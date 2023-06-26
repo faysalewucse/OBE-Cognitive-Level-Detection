@@ -1,24 +1,17 @@
 import { useState } from "react";
-import { getDatabase, ref, set } from "firebase/database";
 import { useAuth } from "../contexts/AuthContext";
 import Button from "../components/Button";
 import "react-datepicker/dist/react-datepicker.css";
-import DatePicker from "react-datepicker";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
 import ewuLogo from "../assets/ewuLogo.png";
-
-import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
 
 export default function CreateQuiz() {
-  //page navigator
-  const navigate = useNavigate();
   //get current user
-  const { uid, displayName } = useAuth().currentUser;
+  const { displayName, email } = useAuth().currentUser;
 
   //Variables
-  const [title, setTitle] = useState(""); //question title
   const [instructor, setInstructor] = useState(""); //question title
   const [fullMarks, setFullMarks] = useState(""); //question title
   const [courseCode, setCourseCode] = useState(""); //question title
@@ -29,21 +22,12 @@ export default function CreateQuiz() {
   const [examDate, setExamDate] = useState("dd/mm/yyyy"); //question title
   const [examType, setExamType] = useState(""); //question title
   const [semester, setSemester] = useState(""); //question title
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [alwaysPublic, setAlwaysPublic] = useState(false);
-  const [privacy, setPrivacy] = useState(false);
-  // const [emails, setEmails] = useState([]);
-  // const [email, setEmail] = useState("");
-
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState([
     {
       id: 1,
       question: "",
-      options: [{ id: 1, value: "" }],
       type: "radio",
-      correct_answer: [],
       mark: 0,
     },
   ]);
@@ -51,39 +35,23 @@ export default function CreateQuiz() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!alwaysPublic) {
-      if (Date.now() > startDate || startDate > endDate) {
-        return toast.error(
-          "Start Time should greater then present Time and End Time should greater then start Time"
-        );
-      }
-    }
-
     try {
       setLoading(true);
-      const db = getDatabase();
-      const quizRef = ref(
-        db,
-        `${uid}/myquizes/${Date.now().toString(36).toUpperCase()}`
+      await axios.post(
+        "http://127.0.0.1:5000/addQuestion",
+        {
+          questions: questions,
+          userEmail: email,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
-      await set(quizRef, {
-        title,
-        joinKey: quizRef.key,
-        creator_uid: uid,
-        creator_name: displayName,
-        created_time: Date.now(),
-        duration: alwaysPublic ? "0" : endDate - startDate,
-        startDate: alwaysPublic ? "null" : startDate.toString(),
-        endDate: alwaysPublic ? "null" : endDate.toString(),
-        alwaysPublic,
-        questions: JSON.stringify(questions),
-      });
-      toast.success("Assesment added successfully!");
       setLoading(false);
-      setTimeout(() => {
-        navigate("/");
-      }, 3000);
     } catch (error) {
+      setLoading(false);
       toast.error(error.message);
     }
   };
@@ -96,9 +64,7 @@ export default function CreateQuiz() {
         {
           id: prevQuestions.length + 1,
           question: "",
-          options: [{}],
           type: "radio",
-          correct_answer: [],
           marks: 0,
         },
       ];
@@ -133,60 +99,6 @@ export default function CreateQuiz() {
     });
   };
 
-  //Type Change Function
-  const handleType = (e, question) => {
-    setQuestions((prevQuestions) => {
-      return prevQuestions.map((q) => {
-        if (q.id === question.id) {
-          return {
-            ...q,
-            type: e.target.value,
-            correct_answer: [],
-          };
-        } else return q;
-      });
-    });
-  };
-
-  //Add Option Function
-  const handleOption = (question) => {
-    if (question.options.length < 4) {
-      setQuestions((prevQuestions) => {
-        return prevQuestions.map((q) => {
-          if (q.id === question.id) {
-            return {
-              ...q,
-              options: [...q.options, { id: q.options.length + 1, value: "" }],
-            };
-          } else return q;
-        });
-      });
-    } else {
-      toast.error("More Than 4 Options is not allowed");
-    }
-  };
-
-  //Option Onchange Function
-  const setOptionValue = (e, question, id) => {
-    setQuestions((prevQuestions) => {
-      return prevQuestions.map((q) => {
-        if (q.id === question.id) {
-          return {
-            ...q,
-            options: q.options.map((option) => {
-              if (id === option.id) {
-                return {
-                  id: id,
-                  value: e.target.value,
-                };
-              } else return option;
-            }),
-          };
-        } else return q;
-      });
-    });
-  };
-
   //Remove Question Function
   const removeQuestion = (id) => {
     if (questions.length > 1) {
@@ -195,55 +107,6 @@ export default function CreateQuiz() {
       });
     } else {
     }
-  };
-
-  //Delete Option Function
-  const deleteOptionHandler = (question, index) => {
-    if (question?.options.length > 1) {
-      setQuestions((prevQuestions) => {
-        return prevQuestions.filter((ques) => {
-          if (ques.id === question.id) {
-            question.correct_answer = [];
-            return (question.options = ques.options.filter(
-              (option) => option.id !== index
-            ));
-          }
-          return ques;
-        });
-      });
-    } else {
-    }
-  };
-
-  const setcorrect_answerHandler = (question, option) => {
-    //if the value already exists in the correct_answer [] then remove it
-    const removed =
-      question.correct_answer.indexOf(option.value) !== -1 &&
-      question.correct_answer.splice(
-        question.correct_answer.indexOf(option.value),
-        1
-      );
-    //filtering the correct_answer array
-    const correct_answer =
-      question.type === "checkbox" //if the question type is checkbox then removed or push value to []
-        ? removed // if removed then push removed []
-          ? question.correct_answer
-          : [...question.correct_answer, option.value] //else push new value to []
-        : [option.value];
-
-    setQuestions((prevQuestion) => {
-      return [
-        ...prevQuestion.map((ques) => {
-          if (ques.id === question.id) {
-            return {
-              ...question,
-              correct_answer: correct_answer, // inserting the new correct_answer [] with the value
-            };
-          }
-          return ques;
-        }),
-      ];
-    });
   };
 
   return (
@@ -353,16 +216,6 @@ export default function CreateQuiz() {
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
             />
-
-            {privacy && (
-              <div className="flex items-center">
-                <input
-                  type="text"
-                  placeholder="Features is Not Available. Just Keep The Join Key Secret"
-                  className="w-full p-2"
-                />
-              </div>
-            )}
 
             {questions?.map((question, index) => {
               return (

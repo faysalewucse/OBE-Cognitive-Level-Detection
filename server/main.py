@@ -1,57 +1,61 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
+from sklearn import svm
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.ensemble import RandomForestClassifier
-from flask import Flask, request, jsonify
+from sklearn.impute import SimpleImputer
+from flask import Flask, jsonify, request
+import pymongo
+import os
+from flask_cors import CORS
+from dotenv import load_dotenv
+load_dotenv()
 
-# Load the dataset
-dataset = pd.read_csv('data.csv')  # Replace 'data.csv' with the path to your CSV file
+db_client = pymongo.MongoClient(os.getenv('MONGODB_URL'))
+database = db_client["capstone"]
 
-# Drop rows with missing values
-dataset.dropna(inplace=True)
+# Step 1: Load the CSV dataset
+dataset = pd.read_csv('600data.csv')
 
-# Split the dataset into features (X) and labels (y)
+# Step 2: Prepare your data
 X = dataset['question'].values  # Input questions
 y = dataset['level'].values  # Cognitive level labels
 
-# Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# Step 3: Preprocess the input texts
+vectorizer = TfidfVectorizer()  # You can customize this vectorizer based on your specific requirements
+X_vectors = vectorizer.fit_transform(X)
 
-# Preprocess the input data: Convert text to numerical features using TF-IDF vectorization
-vectorizer = TfidfVectorizer()
-X_train = vectorizer.fit_transform(X_train)
-X_test = vectorizer.transform(X_test)
+# Step 4: Handle missing values in the target variable
+imputer = SimpleImputer(strategy='most_frequent')
+y = imputer.fit_transform(y.reshape(-1, 1)).flatten()
 
-# Initialize the classifier
-clf = RandomForestClassifier()
+# Step 5: Train the SVM model
+svm_model = svm.SVC(kernel='sigmoid')
+svm_model.fit(X_vectors, y)
 
-# Train the model
-clf.fit(X_train, y_train)
-
-# Create a Flask app
+# Step 6: Create a Flask app
 app = Flask(__name__)
+CORS(app)
 
+# Default route
+@app.route('/')
+def home():
+    return "Welcome to the Cognitive Level Prediction API!"
 
+@app.route('/addQuestion', methods=['POST'])
+def question():
+    print(request.json)
+    return "Great"
+
+# Route for predicting cognitive level
 @app.route('/predict', methods=['POST'])
-def predict():
-    # Get the input question from the request body
-    question = request.json['question']
+def predict_cognitive_level():
+    input_question = request.json['question']
+    input_question_vector = vectorizer.transform([input_question])
+    predicted_level = svm_model.predict(input_question_vector)
 
-    # Apply the same vectorization to the input question
-    question_vectorized = vectorizer.transform([question])
-
-    # Predict the cognitive level
-    predicted_level = clf.predict(question_vectorized)
-
-    # Create a response object
-    response = {
-        'question': question,
-        'cognitive_level': predicted_level[0]
-    }
-
-    # Return the response as JSON
+    response = {'predicted_cognitive_level': int(predicted_level[0])}  # Convert to int for JSON serialization
     return jsonify(response)
 
 
+# Run the Flask app
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
