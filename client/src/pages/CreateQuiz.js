@@ -129,7 +129,7 @@ export default function CreateQuiz() {
         if (q.id === question.id) {
           return {
             ...q,
-            mark: e.target.value,
+            marks: e.target.value,
           };
         } else return q;
       });
@@ -446,15 +446,15 @@ export default function CreateQuiz() {
                     key={index}
                     className="flex items-center justify-between mb-5"
                   >
-                    <div className="w-5/6 flex gap-2 bg-indigo-200">
+                    <div className="w-5/6 flex gap-2">
                       <p>{index + 1}.</p>
                       <p className="break-words w-[480px]">
                         {question?.question}
                       </p>
                     </div>
-                    <div className="font-bold">
+                    <p>
                       [C{question.cognitive_level}, Marks {question.marks}]
-                    </div>
+                    </p>
                   </div>
                 );
               })}

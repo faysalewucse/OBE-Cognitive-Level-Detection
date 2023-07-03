@@ -41,9 +41,30 @@ def home():
     return "Welcome to the Cognitive Level Prediction API!"
 
 @app.route('/addQuestion', methods=['POST'])
-def question():
-    print(request.json)
-    return "Great"
+def add_question():
+    try:
+        data = request.get_json()
+        
+        # Insert the document into MongoDB
+        inserted_id = database.questions.insert_one(data).inserted_id
+
+        # Prepare the success response
+        response = {
+            'message': 'Question added successfully',
+            'inserted_id': str(inserted_id)
+        }
+
+        return jsonify(response), 200
+
+    except Exception as e:
+        # Handle the error and return an error response
+        error_message = str(e)
+        response = {
+            'message': 'Error occurred while adding question',
+            'error': error_message
+        }
+
+        return jsonify(response), 500
 
 # Route for predicting cognitive level
 @app.route('/predict', methods=['POST'])
