@@ -6,6 +6,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ewuLogo from "../assets/ewuLogo.png";
 import axios from "axios";
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
 
 export default function CreateQuiz() {
   //get current user
@@ -27,8 +29,8 @@ export default function CreateQuiz() {
     {
       id: 1,
       question: "",
-      type: "radio",
-      mark: 0,
+      marks: 0,
+      cognitive_level: null,
     },
   ]);
 
@@ -58,27 +60,62 @@ export default function CreateQuiz() {
 
   //Add Question Function
   const addQuestionHandler = () => {
+    handleCognitiveLevel();
     setQuestions((prevQuestions) => {
       return [
         ...prevQuestions,
         {
           id: prevQuestions.length + 1,
           question: "",
-          type: "radio",
           marks: 0,
+          cognitive_level: null,
         },
       ];
     });
   };
 
   // Handle Question
+  const baseUrl = process.env.REACT_APP_BASE_URL;
+  const [timeoutId, setTimeoutId] = useState(null);
+
+  const setQuetionLevel = (level, questionId) => {
+    console.log(level, questionId);
+    setQuestions((prevQuestions) => {
+      return prevQuestions.map((q) => {
+        if (q.id === questionId) {
+          return {
+            ...q,
+            cognitive_level: level,
+          };
+        } else return q;
+      });
+    });
+  };
+
+  const getLevel = async (value, questionId) => {
+    const { data } = await axios.post(`${baseUrl}/predict`, {
+      question: value,
+    });
+
+    setQuetionLevel(data?.predicted_cognitive_level, questionId);
+  };
+
   const handleQuestion = (e, question) => {
+    const value = e.target.value;
+    clearTimeout(timeoutId);
+
+    setTimeoutId(
+      setTimeout(() => {
+        if (question.question) getLevel(value, question.id);
+      }, 5000)
+    );
+
     setQuestions((prevQuestions) => {
       return prevQuestions.map((q) => {
         if (q.id === question.id) {
           return {
             ...q,
-            question: e.target.value,
+            question: value,
           };
         } else return q;
       });
@@ -107,6 +144,101 @@ export default function CreateQuiz() {
       });
     } else {
     }
+  };
+
+  const handleCognitiveLevel = async () => {
+    for (let question of questions) {
+      if (question.cognitive_level === null) {
+        const questionId = question.id;
+        const response = await axios.post("http://127.0.0.1:5000/addQuestion", {
+          question: question.question,
+        });
+        console.log(response, questionId);
+      }
+    }
+  };
+
+  const getBase64Image = (file) => {
+    return new Promise((resolve, reject) => {
+      if (!file) {
+        reject(new Error("Invalid file"));
+      }
+
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
+  pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
+  const generatePDF = async () => {
+    const ewuLogoFile = await fetch(ewuLogo).then((response) =>
+      response.blob()
+    );
+    const ewuLogoDataURL = await getBase64Image(ewuLogoFile);
+
+    const documentDefinition = {
+      content: [
+        { text: examDate, alignment: "right" },
+        {
+          columns: [
+            { image: ewuLogoDataURL, width: 80 },
+            {
+              stack: [
+                "East West University",
+                "Department of Computer Science and Engineering",
+                "B.Sc. in Computer Science and Engineering Program",
+                `${examType} Examination, ${semester} Semester`,
+              ],
+              style: "header",
+            },
+          ],
+        },
+        {
+          style: "section",
+          margin: [0, 20, 0, 0],
+          columns: [
+            {
+              stack: [
+                `Course: ${courseCode || "CSEXXX"}, ${
+                  courseTitle || "XXXX XXXX"
+                }, Section: ${section || 0}`,
+                `Instructor: ${instructor || ""}`,
+                `Full Marks: ${fullMarks || 0}`,
+                `Time: ${examDuration || 0} Minutes`,
+              ],
+            },
+          ],
+        },
+        {
+          text: [{ text: "Note: ", bold: true }, notes || ""],
+          style: "note",
+        },
+        { text: "Questions:", style: "section", margin: [0, 20, 0, 0] },
+        ...questions?.map((question, index) => ({
+          columns: [
+            { text: `${index + 1}.`, bold: true },
+            { text: question.question, style: "question" },
+            {
+              text: `[C${question.cognitive_level}, Marks ${question.marks}]`,
+              bold: true,
+            },
+          ],
+          margin: [0, 5, 0, 0],
+        })),
+      ],
+      styles: {
+        header: { bold: true, fontSize: 12, marginBottom: 5 },
+        section: { fontSize: 10 },
+        note: { fontSize: 10, marginTop: 10 },
+        question: { width: "480px", margin: [10, 0, 0, 0], fontSize: 10 },
+      },
+    };
+
+    const pdfDocGenerator = pdfMake.createPdf(documentDefinition);
+    pdfDocGenerator.download("quiz.pdf");
   };
 
   return (
@@ -258,11 +390,12 @@ export default function CreateQuiz() {
             <div>
               <h6
                 onClick={addQuestionHandler}
-                className="rounded-sm py-1 text-center text-white my-5 bg-blue-800 cursor-pointer hover:bg-blue-900"
+                className="rounded-full p-1 w-8 h-8 flex justify-center items-center ml-auto text-center text-white my-5 bg-blue-800 cursor-pointer hover:bg-blue-900"
               >
-                + Add Question
+                +
               </h6>
             </div>
+
             <Button loading={loading} text="Create" />
           </form>
 
@@ -279,11 +412,11 @@ export default function CreateQuiz() {
         </div>
         <div className="md:px-20 p-2">
           <h3 className="text-center font-extrabold text-gray-900">Output</h3>
-          <div className="tinos bg-white min-h-[877px] mt-5 rounded w-[620px] p-5 text-[10px]">
-            <h6 className="block text-end text-sm">{examDate}</h6>
-            <div className="font-bold flex gap-2 justify-center items-center ">
-              <img className="w-1/6" src={ewuLogo} alt="ewuLogo" />
-              <div className="">
+          <div className="px-16 bg-white min-h-[877px] mt-5 rounded w-[620px] p-5 text-[10px]">
+            <h6 className="block text-end">{examDate}</h6>
+            <div className="font-bold flex gap-2 items-center ">
+              <img className="w-1/5" src={ewuLogo} alt="ewuLogo" />
+              <div className="tracking-wider">
                 <h6>East West University</h6>
                 <p>Department of Computer Science and Engineering</p>
                 <p>B.Sc. in Computer Science and Engineering Program</p>
@@ -292,7 +425,7 @@ export default function CreateQuiz() {
                 </p>
               </div>
             </div>
-            <div className="px-28 font-semibold mt-5">
+            <div className="font-semibold mt-5">
               <p>
                 Course: {courseCode || "CSEXXX"}, {courseTitle || "XXXX XXXX"},
                 Section: {section || 0}
@@ -301,28 +434,51 @@ export default function CreateQuiz() {
               <p>Full Marks: {fullMarks || 0}</p>
               <p>Time: {examDuration || 0} Minutes</p>
             </div>
-            <pre>
-              <b>Note:</b> <br />
+            <pre style={{ fontFamily: "Poppins" }} className="mt-5">
+              <b>Note: </b>
               {notes || ""}
             </pre>
             <hr className="border border-gray-300 my-3" />
             <div>
               {questions?.map((question, index) => {
                 return (
-                  <div className="flex items-center gap-2">
-                    <p>{index + 1}.</p>
-                    <p className="break-words w-[480px]">
-                      {question?.question}
-                    </p>
-                    <p className="font-bold">
-                      [CO3, C1, Marks {question.mark}]
-                    </p>
+                  <div
+                    key={index}
+                    className="flex items-center justify-between mb-5"
+                  >
+                    <div className="w-5/6 flex gap-2 bg-indigo-200">
+                      <p>{index + 1}.</p>
+                      <p className="break-words w-[480px]">
+                        {question?.question}
+                      </p>
+                    </div>
+                    <div className="font-bold">
+                      [C{question.cognitive_level}, Marks {question.marks}]
+                    </div>
                   </div>
                 );
               })}
             </div>
           </div>
-          <button className="block mt-5 text-white rounded py-2 px-6 w-full bg-indigo-500">
+
+          {/* <QuestionPdf
+            courseCode={courseCode}
+            courseTitle={courseTitle}
+            ewuLogo={ewuLogo}
+            examDate={examDate}
+            examDuration={examDuration}
+            examType={examType}
+            fullMarks={fullMarks}
+            instructor={instructor}
+            notes={notes}
+            questions={questions}
+            section={section}
+            semester={semester}
+          /> */}
+          <button
+            onClick={generatePDF}
+            className="block mt-5 text-white rounded py-2 px-6 w-full bg-indigo-500"
+          >
             Download PDF
           </button>
         </div>
