@@ -5,9 +5,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import Button from "../components/Button";
 import { useAuth } from "../contexts/AuthContext";
 import Loading from "../utils/Loading";
-import { ToastContainer, toast } from "react-toastify";
 import Error from "../utils/Error";
 import millisToMinutesAndSeconds from "../utils/MilliSecondConverter";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function ParticipateQuiz() {
   //getCurrentUserUID
@@ -236,18 +236,7 @@ export default function ParticipateQuiz() {
           <div>{!error ? <Loading /> : <Error msg={error} />}</div>
         )}
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 }

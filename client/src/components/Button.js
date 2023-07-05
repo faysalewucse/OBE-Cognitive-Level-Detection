@@ -5,7 +5,7 @@ export default function Button({ loading, text, style }) {
     <button
       disabled={loading}
       type="submit"
-      className={`w-full bg-blue-600 p-2 text-white rounded hover:bg-blue-700 ${style}`}
+      className={`w-full bg-blue-500 p-2 text-white rounded hover:bg-blue-600 ${style}`}
     >
       <div className="flex items-center justify-center">
         {loading ? (

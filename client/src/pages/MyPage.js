@@ -1,4 +1,3 @@
-import { getDatabase, onValue, ref } from "firebase/database";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -10,44 +9,36 @@ import { useAuth } from "../contexts/AuthContext";
 import { controlParticipateModal } from "../features/modal/modalSlice";
 import png1 from "../assets/png1.png";
 import png2 from "../assets/png2.png";
+import axios from "axios";
 
 export default function MyPage() {
   //get current user UID
-  const { uid } = useAuth().currentUser;
+  const { email } = useAuth().currentUser;
 
   //style
   const navLinkStyle =
     "border rounded text-white hover:opacity-100 cursor-pointer px-4 py-2 text-sm font-bold";
   //all data
-  const [myQuizes, setMyQuizes] = useState([]);
-  const [myParticipation, setMyParticipation] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [nav, setNav] = useState("myquizes");
+
+  const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
-    const db = getDatabase();
-    const myQuizesRef = ref(db, `${uid}/myquizes`);
-    const myParticipationRef = ref(db, `${uid}/participations`);
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/questions?email=${email}`
+        );
 
-    onValue(myQuizesRef, (snapshot) => {
-      let data = [];
-      snapshot.forEach((childSnapshot) => {
-        const quizesData = childSnapshot.val();
-        data.push(quizesData);
-      });
-      setMyQuizes(data);
-    });
+        setQuestions(data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
 
-    onValue(myParticipationRef, (snapshot) => {
-      let data = [];
-      snapshot.forEach((childSnapshot) => {
-        const participationData = childSnapshot.val();
-        data.push(participationData);
-      });
-      setMyParticipation(data);
-    });
-  }, [uid]);
+    fetchData();
+  }, [email]);
 
   const participateHandler = () => {
     dispatch(controlParticipateModal());
@@ -58,22 +49,7 @@ export default function MyPage() {
       <div className="max-w-7xl mx-auto p-10">
         <div className="flex flex-wrap justify-between gap-1 mb-2 md:mb-5 text-xs md:text-md">
           <div className="flex gap-2">
-            <h6
-              onClick={() => setNav("myquizes")}
-              className={`${navLinkStyle} ${
-                nav === "myquizes" ? "opacity-100" : "opacity-50"
-              }`}
-            >
-              My Quizes
-            </h6>
-            <h6
-              onClick={() => setNav("participation")}
-              className={`${navLinkStyle} ${
-                nav === "participation" ? "opacity-100" : "opacity-50"
-              }`}
-            >
-              Participation
-            </h6>
+            <h6 className={`${navLinkStyle}`}>My Questions</h6>
           </div>
           <div className="flex gap-2 mt-2">
             <button
@@ -91,68 +67,35 @@ export default function MyPage() {
           </div>
         </div>
         <div className="border-t-2 border-indigo-400 rounded py-10">
-          {nav === "myquizes" ? (
-            <div>
-              {myQuizes?.length !== 0 ? (
-                <div>
-                  <h3 className="font-bold mb-5 text-white">My Quizes</h3>
-                  <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-5">
-                    {myQuizes?.map((quiz, index) => {
-                      return (
-                        <div
-                          key={index}
-                          onClick={() => navigate(`/editQuiz/${quiz.joinKey}`)}
-                        >
-                          <QuizCard
-                            quizName={quiz.title}
-                            date={quiz.created_time}
-                            duration={quiz.duration}
-                            startDate={quiz.startDate}
-                            endDate={quiz.endDate}
-                            alwaysPublic={quiz.alwaysPublic}
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
+          <div>
+            {questions?.length !== 0 ? (
+              <div>
+                <h3 className="font-bold mb-5 text-white">My Questions</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-5">
+                  {questions?.map((question, index) => {
+                    console.log(question);
+                    return (
+                      <div
+                        key={index}
+                        onClick={() => navigate(`/editQuiz/${question._id}`)}
+                      >
+                        <QuizCard
+                          quizName={question.courseTitle}
+                          courseCode={question.courseCode}
+                          section={question.section}
+                          date={question.examDate}
+                          duration={question.examDuration}
+                          startDate={question.examDate}
+                        />
+                      </div>
+                    );
+                  })}
                 </div>
-              ) : (
-                <NoDataYet text={"You didn't created any quiz yet!"} />
-              )}
-            </div>
-          ) : (
-            <div>
-              {myParticipation?.length !== 0 ? (
-                <div>
-                  <h3 className="font-bold mb-5 text-white">
-                    My Participation(s)
-                  </h3>
-                  <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-5">
-                    {myParticipation?.map((data, index) => {
-                      let { quizinfo, key } = data;
-                      //submission = JSON.parse(submission);
-                      return (
-                        <div
-                          key={index}
-                          onClick={() => navigate(`/result/${key}`)}
-                        >
-                          <QuizCard
-                            quizName={quizinfo.title}
-                            duration={quizinfo.duration}
-                            startDate={quizinfo.startDate}
-                            endDate={quizinfo.endDate}
-                            alwaysPublic={quizinfo.alwaysPublic}
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              ) : (
-                <NoDataYet text={"You didn't participate any quiz yet!"} />
-              )}
-            </div>
-          )}
+              </div>
+            ) : (
+              <NoDataYet text={"You didn't created any quiz yet!"} />
+            )}
+          </div>
         </div>
 
         <button

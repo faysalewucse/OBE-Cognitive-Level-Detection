@@ -1,19 +1,19 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import Button from "../components/Button";
-import "react-datepicker/dist/react-datepicker.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import ewuLogo from "../assets/ewuLogo.png";
 import axios from "axios";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function CreateQuiz() {
   //get current user
   const { displayName, email } = useAuth().currentUser;
 
   //Variables
+  const [suggestedWord, setSuggestedWord] = useState("");
+  // const [tabPressed, setTabPressed] = useState(false);
   const [instructor, setInstructor] = useState(""); //question title
   const [fullMarks, setFullMarks] = useState(""); //question title
   const [courseCode, setCourseCode] = useState(""); //question title
@@ -42,6 +42,16 @@ export default function CreateQuiz() {
       await axios.post(
         "http://127.0.0.1:5000/addQuestion",
         {
+          instructor,
+          fullMarks,
+          courseCode,
+          courseTitle,
+          section,
+          notes,
+          examDuration,
+          examDate,
+          examType,
+          semester,
           questions: questions,
           userEmail: email,
         },
@@ -52,6 +62,7 @@ export default function CreateQuiz() {
         }
       );
       setLoading(false);
+      toast.success("Question Created Successfully");
     } catch (error) {
       setLoading(false);
       toast.error(error.message);
@@ -77,6 +88,7 @@ export default function CreateQuiz() {
   // Handle Question
   const baseUrl = process.env.REACT_APP_BASE_URL;
   const [timeoutId, setTimeoutId] = useState(null);
+  const [timeoutId2, setTimeoutId2] = useState(null);
 
   const setQuetionLevel = (level, questionId) => {
     console.log(level, questionId);
@@ -100,14 +112,33 @@ export default function CreateQuiz() {
     setQuetionLevel(data?.predicted_cognitive_level, questionId);
   };
 
+  const getNextWord = async (value) => {
+    const { data } = await axios.post(`${baseUrl}/next`, {
+      sentence: value,
+    });
+
+    setSuggestedWord(data?.next_word);
+  };
+
   const handleQuestion = (e, question) => {
     const value = e.target.value;
     clearTimeout(timeoutId);
+    clearTimeout(timeoutId2);
 
     setTimeoutId(
       setTimeout(() => {
-        if (question.question) getLevel(value, question.id);
+        if (question.question) {
+          getLevel(value, question.id);
+        }
       }, 5000)
+    );
+
+    setTimeoutId2(
+      setTimeout(() => {
+        if (question.question) {
+          getNextWord(value);
+        }
+      }, 500)
     );
 
     setQuestions((prevQuestions) => {
@@ -357,19 +388,23 @@ export default function CreateQuiz() {
                 >
                   <div className={`relative flex justify-between items-center`}>
                     <div className="w-full p-2 rounded-lg">
-                      <div className="flex flex-col md:flex-row gap-4 md:items-center">
+                      <div className="relative flex flex-col md:flex-row gap-4 md:items-center">
                         <h6>{index + 1}.</h6>
                         <textarea
                           name="question"
                           type="text"
                           required
                           rows={1}
-                          className="flex-grow font-bold rounded relative px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10"
+                          className="flex-grow font-bold rounded relative px-3 py-2 border border-gray-300 placeholder-gray-300 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10"
                           placeholder="Question"
                           value={question.question}
                           onChange={(e) => handleQuestion(e, question)}
                         />
-
+                        <span
+                          className={`absolute left-1/2 -bottom-5 bg-indigo-400 text-white rounded py-1 px-6 z-20`}
+                        >
+                          {suggestedWord}
+                        </span>
                         <input
                           type="number"
                           className="md:mt-0 p-2 border focus:outline-none rounded w-24"
@@ -390,7 +425,7 @@ export default function CreateQuiz() {
             <div>
               <h6
                 onClick={addQuestionHandler}
-                className="rounded-full p-1 w-8 h-8 flex justify-center items-center ml-auto text-center text-white my-5 bg-blue-800 cursor-pointer hover:bg-blue-900"
+                className="rounded-full p-1 w-8 h-8 flex justify-center items-center ml-auto text-center text-white my-5 bg-blue-600 cursor-pointer hover:bg-blue-700"
               >
                 +
               </h6>
@@ -398,17 +433,6 @@ export default function CreateQuiz() {
 
             <Button loading={loading} text="Create" />
           </form>
-
-          <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={true}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            theme="dark"
-          />
         </div>
         <div className="md:px-20 p-2">
           <h3 className="text-center font-extrabold text-gray-900">Output</h3>
@@ -483,6 +507,7 @@ export default function CreateQuiz() {
           </button>
         </div>
       </div>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 }

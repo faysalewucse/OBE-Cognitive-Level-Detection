@@ -1,133 +1,177 @@
-import { useEffect, useState } from "react";
-import { getDatabase, onValue, ref, update } from "firebase/database";
+import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import Button from "../components/Button";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import Switch from "react-switch";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useNavigate, useParams } from "react-router-dom";
-import copy from "copy-to-clipboard";
+import ewuLogo from "../assets/ewuLogo.png";
+import axios from "axios";
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+import { Toaster, toast } from "react-hot-toast";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-export default function EditQuiz() {
-  const joinKey = useParams().joinKey;
-  const [clipBoard, setClipboard] = useState(false);
+export default function CreateQuiz() {
+  const { id } = useParams();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/question?id=${id}`
+        );
+        setExamDate(data[0].examDate);
+        setExamType(data[0].examType);
+        setSemester(data[0].semester);
+        setCourseCode(data[0].courseCode);
+        setCourseTitle(data[0].courseTitle);
+        setSection(data[0].section);
+        setExamDuration(data[0].examDuration);
+        setFullMarks(data[0].fullMarks);
+        setNotes(data[0].notes);
+        setQuestions(data[0].questions);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
 
-  const clipBoardHandler = () => {
-    copy(`https://quiztaker.netlify.app/participateQuiz/${joinKey}`);
-    setClipboard(true);
-    setTimeout(() => {
-      setClipboard(false);
-    }, 1000);
-  };
-
-  // For Edit Questions
-  //page navigator
-  const navigate = useNavigate();
+    fetchData();
+  }, [id]);
   //get current user
-  const { uid, displayName } = useAuth().currentUser;
+  const { displayName } = useAuth().currentUser;
 
   //Variables
-  const [title, setTitle] = useState(""); //question title
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [alwaysPublic, setAlwaysPublic] = useState(false);
-  const [privacy, setPrivacy] = useState(false);
-  // const [emails, setEmails] = useState([]);
-  // const [email, setEmail] = useState("");
-
+  const [suggestedWord, setSuggestedWord] = useState("");
+  // const [tabPressed, setTabPressed] = useState(false);
+  const [instructor, setInstructor] = useState(displayName);
+  const [fullMarks, setFullMarks] = useState("");
+  const [courseCode, setCourseCode] = useState("");
+  const [courseTitle, setCourseTitle] = useState("");
+  const [section, setSection] = useState("");
+  const [notes, setNotes] = useState("");
+  const [examDuration, setExamDuration] = useState("");
+  const [examDate, setExamDate] = useState("dd/mm/yyyy");
+  const [examType, setExamType] = useState("");
+  const [semester, setSemester] = useState("");
   const [loading, setLoading] = useState(false);
   const [questions, setQuestions] = useState([
     {
       id: 1,
       question: "",
-      options: [{ id: 1, value: "" }],
-      type: "radio",
-      required: false,
-      correct_answer: [],
-      mark: 0,
+      marks: 0,
+      cognitive_level: null,
     },
   ]);
-
-  useEffect(() => {
-    const db = getDatabase();
-    const quizRef = ref(db, `${uid}/myquizes/${joinKey}/`);
-    onValue(quizRef, (snapshot) => {
-      const { title, alwaysPublic, questions, startDate, endDate } =
-        snapshot.val();
-
-      setTitle(title);
-      setQuestions(JSON.parse(questions));
-      setAlwaysPublic(alwaysPublic);
-      setStartDate(startDate);
-      setEndDate(endDate);
-    });
-  }, [joinKey, uid]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!alwaysPublic) {
-      if (Date.now() > startDate || startDate > endDate) {
-        return toast.error(
-          "Start Time should greater then present Time and End Time should greater then start Time"
-        );
-      }
-    }
-
     try {
       setLoading(true);
-      const db = getDatabase();
-      const quizRef = ref(db, `${uid}/myquizes/${joinKey}`);
-      await update(quizRef, {
-        title: title,
-        joinKey: quizRef.key,
-        creator_uid: uid,
-        creator_name: displayName,
-        created_time: Date.now(),
-        duration: alwaysPublic ? "0" : new Date(endDate) - new Date(startDate),
-        startDate: alwaysPublic ? "null" : startDate.toString(),
-        endDate: alwaysPublic ? "null" : endDate.toString(),
-        alwaysPublic: alwaysPublic,
-        questions: JSON.stringify(questions),
-      });
-      toast.success("Assesment added successfully!");
+      await axios.patch(
+        `http://127.0.0.1:5000/questions/${id}`,
+        {
+          instructor,
+          fullMarks,
+          courseCode,
+          courseTitle,
+          section,
+          notes,
+          examDuration,
+          examDate,
+          examType,
+          semester,
+          questions: questions,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       setLoading(false);
-      setTimeout(() => {
-        navigate("/");
-      }, 3000);
+      toast.success("Question Updated Successfully");
     } catch (error) {
-      toast.error(error.message);
       setLoading(false);
+      toast.error(error.message);
     }
   };
 
   //Add Question Function
   const addQuestionHandler = () => {
+    handleCognitiveLevel();
     setQuestions((prevQuestions) => {
       return [
         ...prevQuestions,
         {
           id: prevQuestions.length + 1,
           question: "",
-          options: [{}],
-          type: "radio",
-          correct_answer: [],
           marks: 0,
+          cognitive_level: null,
         },
       ];
     });
   };
 
-  //Type Change Function
+  // Handle Question
+  const baseUrl = process.env.REACT_APP_BASE_URL;
+  const [timeoutId, setTimeoutId] = useState(null);
+  const [timeoutId2, setTimeoutId2] = useState(null);
+
+  const setQuetionLevel = (level, questionId) => {
+    console.log(level, questionId);
+    setQuestions((prevQuestions) => {
+      return prevQuestions.map((q) => {
+        if (q.id === questionId) {
+          return {
+            ...q,
+            cognitive_level: level,
+          };
+        } else return q;
+      });
+    });
+  };
+
+  const getLevel = async (value, questionId) => {
+    const { data } = await axios.post(`${baseUrl}/predict`, {
+      question: value,
+    });
+
+    setQuetionLevel(data?.predicted_cognitive_level, questionId);
+  };
+
+  const getNextWord = async (value) => {
+    const { data } = await axios.post(`${baseUrl}/next`, {
+      sentence: value,
+    });
+
+    setSuggestedWord(data?.next_word);
+  };
+
   const handleQuestion = (e, question) => {
+    const value = e.target.value;
+    clearTimeout(timeoutId);
+    clearTimeout(timeoutId2);
+
+    setTimeoutId(
+      setTimeout(() => {
+        if (question.question) {
+          getLevel(value, question.id);
+        }
+      }, 5000)
+    );
+
+    setTimeoutId2(
+      setTimeout(() => {
+        if (question.question) {
+          getNextWord(value);
+        }
+      }, 500)
+    );
+
     setQuestions((prevQuestions) => {
       return prevQuestions.map((q) => {
         if (q.id === question.id) {
           return {
             ...q,
-            question: e.target.value,
+            question: value,
           };
         } else return q;
       });
@@ -141,59 +185,7 @@ export default function EditQuiz() {
         if (q.id === question.id) {
           return {
             ...q,
-            mark: e.target.value,
-          };
-        } else return q;
-      });
-    });
-  };
-  //Type Change Function
-  const handleType = (e, question) => {
-    setQuestions((prevQuestions) => {
-      return prevQuestions.map((q) => {
-        if (q.id === question.id) {
-          return {
-            ...q,
-            type: e.target.value,
-          };
-        } else return q;
-      });
-    });
-  };
-
-  //Add Option Function
-  const handleOption = (question) => {
-    if (question.options.length < 4) {
-      setQuestions((prevQuestions) => {
-        return prevQuestions.map((q) => {
-          if (q.id === question.id) {
-            return {
-              ...q,
-              options: [...q.options, { id: q.options.length + 1, value: "" }],
-            };
-          } else return q;
-        });
-      });
-    } else {
-      toast.error("More Than 4 Options is not allowed");
-    }
-  };
-
-  //Option Onchange Function
-  const setOptionValue = (e, question, id) => {
-    setQuestions((prevQuestions) => {
-      return prevQuestions.map((q) => {
-        if (q.id === question.id) {
-          return {
-            ...q,
-            options: q.options.map((option) => {
-              if (id === option.id) {
-                return {
-                  id: id,
-                  value: e.target.value,
-                };
-              } else return option;
-            }),
+            marks: e.target.value,
           };
         } else return q;
       });
@@ -210,285 +202,339 @@ export default function EditQuiz() {
     }
   };
 
-  //Delete Option Function
-  const deleteOptionHandler = (question, index) => {
-    if (question?.options.length > 1) {
-      setQuestions((prevQuestions) => {
-        return prevQuestions.filter((ques) => {
-          if (ques.id === question.id) {
-            question.correct_answer = [];
-            return (question.options = ques.options.filter(
-              (option) => option.id !== index
-            ));
-          }
-          return ques;
+  const handleCognitiveLevel = async () => {
+    for (let question of questions) {
+      if (question.cognitive_level === null) {
+        const questionId = question.id;
+        const response = await axios.post("http://127.0.0.1:5000/addQuestion", {
+          question: question.question,
         });
-      });
-    } else {
+        console.log(response, questionId);
+      }
     }
   };
 
-  const setcorrect_answerHandler = (question, option) => {
-    //if the value already exists in the correct_answer [] then remove it
-    const removed =
-      question.correct_answer.indexOf(option.value) !== -1 &&
-      question.correct_answer.splice(
-        question.correct_answer.indexOf(option.value),
-        1
-      );
-    //filtering the correct_answer array
-    const correct_answer =
-      question.type === "checkbox" //if the question type is checkbox then removed or push value to []
-        ? removed // if removed then push removed []
-          ? question.correct_answer
-          : [...question.correct_answer, option.value] //else push new value to []
-        : [option.value];
+  const getBase64Image = (file) => {
+    return new Promise((resolve, reject) => {
+      if (!file) {
+        reject(new Error("Invalid file"));
+      }
 
-    setQuestions((prevQuestion) => {
-      return [
-        ...prevQuestion.map((ques) => {
-          if (ques.id === question.id) {
-            return {
-              ...question,
-              correct_answer: correct_answer, // inserting the new correct_answer [] with the value
-            };
-          }
-          return ques;
-        }),
-      ];
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
     });
   };
 
+  pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
+  const generatePDF = async () => {
+    const ewuLogoFile = await fetch(ewuLogo).then((response) =>
+      response.blob()
+    );
+    const ewuLogoDataURL = await getBase64Image(ewuLogoFile);
+
+    const documentDefinition = {
+      content: [
+        { text: examDate, alignment: "right" },
+        {
+          columns: [
+            { image: ewuLogoDataURL, width: 80 },
+            {
+              stack: [
+                "East West University",
+                "Department of Computer Science and Engineering",
+                "B.Sc. in Computer Science and Engineering Program",
+                `${examType} Examination, ${semester} Semester`,
+              ],
+              style: "header",
+            },
+          ],
+        },
+        {
+          style: "section",
+          margin: [0, 20, 0, 0],
+          columns: [
+            {
+              stack: [
+                `Course: ${courseCode || "CSEXXX"}, ${
+                  courseTitle || "XXXX XXXX"
+                }, Section: ${section || 0}`,
+                `Instructor: ${instructor || ""}`,
+                `Full Marks: ${fullMarks || 0}`,
+                `Time: ${examDuration || 0} Minutes`,
+              ],
+            },
+          ],
+        },
+        {
+          text: [{ text: "Note: ", bold: true }, notes || ""],
+          style: "note",
+        },
+        { text: "Questions:", style: "section", margin: [0, 20, 0, 0] },
+        ...questions?.map((question, index) => ({
+          columns: [
+            { text: `${index + 1}.`, bold: true },
+            { text: question.question, style: "question" },
+            {
+              text: `[C${question.cognitive_level}, Marks ${question.marks}]`,
+              bold: true,
+            },
+          ],
+          margin: [0, 5, 0, 0],
+        })),
+      ],
+      styles: {
+        header: { bold: true, fontSize: 12, marginBottom: 5 },
+        section: { fontSize: 10 },
+        note: { fontSize: 10, marginTop: 10 },
+        question: { width: "480px", margin: [10, 0, 0, 0], fontSize: 10 },
+      },
+    };
+
+    const pdfDocGenerator = pdfMake.createPdf(documentDefinition);
+    pdfDocGenerator.download("quiz.pdf");
+  };
+
   return (
-    <div className="max-w-7xl mx-auto p-5 md:p-10">
-      <h6 className="font-bold">
-        <span>Join Link: </span>
-        <div className="text-sm flex items-center mb-5">
-          <p
-            onClick={clipBoardHandler}
-            className="cursor-pointer break-words font-bold text-blue-500 mr-5 box-content"
-          >
-            https://quiztaker.netlify.app/participateQuiz/{joinKey}{" "}
-          </p>
-          <i
-            onClick={clipBoardHandler}
-            className="fa-solid fa-share-nodes cursor-pointer text-black"
-          ></i>
-        </div>
-      </h6>
-      {clipBoard && (
-        <span className="bg-black my-2 text-white p-1 rounded text-center">
-          Copied To Clipboard
-        </span>
-      )}
-      <div className="bg-indigo-50 p-10 rounded-lg">
-        <h3 className="text-center font-extrabold text-gray-900">Questions</h3>
-        <form className="mt-8" onSubmit={handleSubmit}>
-          <div className="mt-5">
+    <div className="relative bg-indigo-100 min-h-screen p-10">
+      <div className="max-w-screen-2xl mx-auto lg:flex">
+        <div className="md:px-20 p-2 flex-grow">
+          <h3 className="text-center font-extrabold text-gray-900">
+            Questions
+          </h3>
+          <form className="mt-8" onSubmit={handleSubmit}>
             <input
-              name="title"
+              type="date"
+              name="date"
+              id="date"
+              className="p-2 focus:outline-none rounded mr-2"
+              onChange={(e) => {
+                const newDate = new Date(e.target.value).toLocaleDateString(
+                  "en-GB"
+                );
+                setExamDate(newDate);
+              }}
+            />
+            {examDate}
+            <div className="mt-2 flex gap-2">
+              <input
+                name="exam"
+                type="text"
+                required
+                className="rounded w-full p-2 focus:z-10 focus:outline-none focus:shadow-md shadow-sm"
+                placeholder="Exam. Ex: Mid 1, Mid 2, Final"
+                value={examType}
+                onChange={(e) => setExamType(e.target.value)}
+              />
+              <input
+                name="semester"
+                type="text"
+                required
+                className="rounded w-full p-2 focus:z-10 focus:outline-none focus:shadow-md shadow-sm"
+                placeholder="Semester Ex:Fall2023"
+                value={semester}
+                onChange={(e) => setSemester(e.target.value)}
+              />
+            </div>
+            <div className="flex gap-2 my-2">
+              <input
+                name="course_code"
+                type="text"
+                required
+                className="rounded w-full p-2 focus:z-10 focus:outline-none focus:shadow-md shadow-sm"
+                placeholder="Course Code"
+                value={courseCode}
+                onChange={(e) => setCourseCode(e.target.value)}
+              />
+              <input
+                name="course_title"
+                type="text"
+                required
+                className="rounded w-full p-2 focus:z-10 focus:outline-none focus:shadow-md shadow-sm"
+                placeholder="Course title"
+                value={courseTitle}
+                onChange={(e) => setCourseTitle(e.target.value)}
+              />
+              <input
+                name="section"
+                type="text"
+                required
+                className="rounded w-full p-2 focus:z-10 focus:outline-none focus:shadow-md shadow-sm"
+                placeholder="Section"
+                value={section}
+                onChange={(e) => setSection(e.target.value)}
+              />
+            </div>
+
+            <input
+              name="instructor"
               type="text"
               required
-              className="md:text-lg rounded w-full p-3 focus:z-10 focus:outline-none focus:shadow-md sm:text-sm shadow-sm font-bold"
-              placeholder="Title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              className="mb-2 rounded w-full p-2 focus:z-10 focus:outline-none focus:shadow-md shadow-sm"
+              placeholder="Instructor"
+              defaultValue={displayName}
+              onChange={(e) => setInstructor(e.target.value)}
             />
-          </div>
-          <div className="flex justify-between my-5">
-            <label className="flex items-center gap-5">
-              <span className="font-bold">Always On for Exam</span>
-              <Switch
-                onChange={() => setAlwaysPublic(!alwaysPublic)}
-                checked={alwaysPublic}
-              />
-            </label>
-            <label className="flex items-center gap-5">
-              <span className="font-bold">Set Target Emails</span>
-              <Switch
-                className="inline"
-                onChange={() => setPrivacy(!privacy)}
-                checked={privacy}
-              />
-            </label>
-          </div>
-
-          {privacy && (
-            <div className="flex items-center">
+            <div className="flex gap-2">
               <input
-                type="text"
-                placeholder="Features is Not Available. Just Keep The Join Key Secret"
-                className="w-full p-2"
+                name="duration"
+                type="number"
+                required
+                className="rounded w-full p-2 focus:z-10 focus:outline-none focus:shadow-md shadow-sm"
+                placeholder="Duration (in minutes)"
+                value={examDuration}
+                onChange={(e) => setExamDuration(e.target.value)}
+              />
+              <input
+                name="fullMarks"
+                type="number"
+                required
+                className="rounded w-full p-2 focus:z-10 focus:outline-none focus:shadow-md shadow-sm"
+                placeholder="Full Marks"
+                value={fullMarks}
+                onChange={(e) => setFullMarks(e.target.value)}
               />
             </div>
-          )}
-          {!alwaysPublic ? (
-            <div className="field md:flex justify-between my-5">
-              <div className="md:flex gap-5 items-center">
-                <h6 className="font-bold w-full">Exam start Time</h6>
-                <DatePicker
-                  selected={new Date(startDate)}
-                  className="p-2 rounded-md focus:outline-none shadow-sm hover:shadow-md"
-                  showTimeSelect
-                  dateFormat="Pp"
-                  onChange={(date) => setStartDate(date)}
-                />
-              </div>
-              <div className="md:flex gap-5 items-center">
-                <h6 className="font-bold w-full">Exam end time</h6>
-                <DatePicker
-                  selected={new Date(endDate)}
-                  className="p-2 rounded-md focus:outline-none shadow-sm hover:shadow-md"
-                  showTimeSelect
-                  dateFormat="Pp"
-                  minDate={new Date()}
-                  onChange={(date) => setEndDate(date)}
-                />
-              </div>
-            </div>
-          ) : null}
-          {questions?.map((question, index) => {
-            return (
-              <div
-                key={index}
-                className={`bg-white rounded-lg text-xl shadow-sm my-3 p-2`}
-              >
-                <div className={`relative flex justify-between text-sm`}>
-                  <div className="w-full p-2 rounded-lg">
-                    <div className="flex flex-col md:flex-row gap-4 md:items-center">
-                      <h6>{index + 1}.</h6>
-                      <input
-                        name="question"
-                        type="text"
-                        required
-                        className="font-bold rounded relative block md:w-2/3 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10"
-                        placeholder="Question"
-                        value={question.question}
-                        onChange={(e) => handleQuestion(e, question)}
-                      />
-                      <select
-                        name="type"
-                        id="question-type"
-                        className="border border-gray-300 p-1.5 rounded w-1/3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10"
-                        onChange={(e) => handleType(e, question)}
-                      >
-                        <option value="radio">Radio</option>
-                        <option value="checkbox">CheckBox</option>
-                      </select>
-                      <input
-                        type="number"
-                        className="mt-2 md:mt-0 border pl-2 h-8 border-black focus:outline-none rounded"
-                        placeholder="Enter Mark(s)"
-                        required
-                        value={question.mark}
-                        onChange={(e) => markHandler(e, question)}
-                      />
-                    </div>
-                    <div className="md:flex justify-between mt-2">
-                      <div className="md:ml-10 mt-2">
-                        <div>
-                          <div>
-                            {question?.options.map((option, index) => {
-                              return (
-                                <div
-                                  key={index}
-                                  className={`flex gap-2 items-center my-1 p-2 ${
-                                    question.correct_answer.indexOf(
-                                      option.value
-                                    ) !== -1 &&
-                                    "bg-indigo-600 rounded-md text-white"
-                                  }`}
-                                >
-                                  <div
-                                    onClick={() =>
-                                      setcorrect_answerHandler(question, option)
-                                    }
-                                  >
-                                    {question.type === "radio" && (
-                                      <ion-icon name="radio-button-off-outline"></ion-icon>
-                                    )}
-                                    {question.type === "checkbox" && (
-                                      <ion-icon name="square-outline"></ion-icon>
-                                    )}
-                                  </div>
+            <textarea
+              name="notes"
+              required
+              className="mt-2 rounded w-full p-2 focus:z-10 focus:outline-none focus:shadow-md shadow-sm"
+              placeholder="Notes"
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+            />
 
-                                  <input
-                                    type="text"
-                                    className="border rounded px-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-transparent"
-                                    onChange={(e) =>
-                                      setOptionValue(e, question, option.id)
-                                    }
-                                    required
-                                    defaultValue={option.value}
-                                    placeholder={`Option ${index + 1}`}
-                                  />
-
-                                  {index === question.options.length - 1 && (
-                                    <i
-                                      onClick={() =>
-                                        deleteOptionHandler(question, index + 1)
-                                      }
-                                      className="fa-solid fa-circle-xmark opacity-70 hover:opacity-100"
-                                    ></i>
-                                  )}
-                                </div>
-                              );
-                            })}
-
-                            <h1
-                              onClick={() => handleOption(question)}
-                              className="text-center mt-2 cursor-pointer bg-blue-700 text-white text-sm md:font-bold rounded hover:bg-blue-800 p-1"
-                            >
-                              Add Option+
-                            </h1>
-                          </div>
-                        </div>
-                        <div className="flex justify-between items-center mt-2 text-sm">
-                          {(question.type === "radio" ||
-                            question.type === "checkbox") &&
-                            question.correct_answer.length === 0 && (
-                              <div className="flex gap-2">
-                                <i className="fa-solid fa-triangle-exclamation text-red-500"></i>
-                                <span className="text-red-400">
-                                  correct_answer(s) Not Selected.Please Select
-                                  correct_answer(s).
-                                </span>
-                              </div>
-                            )}
-                        </div>
+            {questions?.map((question, index) => {
+              return (
+                <div
+                  key={index}
+                  className={`bg-white rounded-lg shadow-sm my-3 p-2`}
+                >
+                  <div className={`relative flex justify-between items-center`}>
+                    <div className="w-full p-2 rounded-lg">
+                      <div className="relative flex flex-col md:flex-row gap-4 md:items-center">
+                        <h6>{index + 1}.</h6>
+                        <textarea
+                          name="question"
+                          type="text"
+                          required
+                          rows={1}
+                          className="flex-grow font-bold rounded relative px-3 py-2 border border-gray-300 placeholder-gray-300 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10"
+                          placeholder="Question"
+                          value={question.question}
+                          onChange={(e) => handleQuestion(e, question)}
+                        />
+                        <span
+                          className={`absolute left-1/2 -bottom-5 bg-indigo-400 text-white rounded py-1 px-6 z-20`}
+                        >
+                          {suggestedWord}
+                        </span>
+                        <input
+                          type="number"
+                          className="md:mt-0 p-2 border focus:outline-none rounded w-24"
+                          placeholder="Mark(s)"
+                          required
+                          value={question.marks}
+                          onChange={(e) => markHandler(e, question)}
+                        />
                       </div>
                     </div>
+                    <i
+                      onClick={() => removeQuestion(question.id)}
+                      className="fa-solid fa-trash cursor-pointer hover:text-red-600 text-red-500"
+                    ></i>
                   </div>
                 </div>
+              );
+            })}
+            <div>
+              <h6
+                onClick={addQuestionHandler}
+                className="rounded-full p-1 w-8 h-8 flex justify-center items-center ml-auto text-center text-white my-5 bg-blue-600 cursor-pointer hover:bg-blue-700"
+              >
+                +
+              </h6>
+            </div>
 
-                <i
-                  onClick={() => removeQuestion(question.id)}
-                  className="fa-solid fa-trash cursor-pointer opacity-50 hover:opacity-100"
-                ></i>
+            <Button loading={loading} text="Save and Update" />
+          </form>
+        </div>
+        <div className="md:px-20 p-2">
+          <h3 className="text-center font-extrabold text-gray-900">Output</h3>
+          <div className="px-16 bg-white min-h-[877px] mt-5 rounded w-[620px] p-5 text-[10px]">
+            <h6 className="block text-end">{examDate}</h6>
+            <div className="font-bold flex gap-2 items-center ">
+              <img className="w-1/5" src={ewuLogo} alt="ewuLogo" />
+              <div className="tracking-wider">
+                <h6>East West University</h6>
+                <p>Department of Computer Science and Engineering</p>
+                <p>B.Sc. in Computer Science and Engineering Program</p>
+                <p>
+                  {examType} Examination, {semester} Semester
+                </p>
               </div>
-            );
-          })}
-          <div>
-            <h6
-              onClick={addQuestionHandler}
-              className="rounded-sm py-1 text-center text-white my-5 bg-blue-800 cursor-pointer hover:bg-blue-900"
-            >
-              + Add Question
-            </h6>
+            </div>
+            <div className="font-semibold mt-5">
+              <p>
+                Course: {courseCode || "CSEXXX"}, {courseTitle || "XXXX XXXX"},
+                Section: {section || 0}
+              </p>
+              <p>Instructor: {instructor || ""}</p>
+              <p>Full Marks: {fullMarks || 0}</p>
+              <p>Time: {examDuration || 0} Minutes</p>
+            </div>
+            <pre style={{ fontFamily: "Poppins" }} className="mt-5">
+              <b>Note: </b>
+              {notes || ""}
+            </pre>
+            <hr className="border border-gray-300 my-3" />
+            <div>
+              {questions?.map((question, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between mb-5"
+                  >
+                    <div className="w-5/6 flex gap-2">
+                      <p>{index + 1}.</p>
+                      <p className="break-words w-[480px]">
+                        {question?.question}
+                      </p>
+                    </div>
+                    <p>
+                      [C{question.cognitive_level}, Marks {question.marks}]
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <Button loading={loading} text="Save and Exchange" />
-        </form>
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={true}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          theme="dark"
-        />
+
+          {/* <QuestionPdf
+            courseCode={courseCode}
+            courseTitle={courseTitle}
+            ewuLogo={ewuLogo}
+            examDate={examDate}
+            examDuration={examDuration}
+            examType={examType}
+            fullMarks={fullMarks}
+            instructor={instructor}
+            notes={notes}
+            questions={questions}
+            section={section}
+            semester={semester}
+          /> */}
+          <button
+            onClick={generatePDF}
+            className="block mt-5 text-white rounded py-2 px-6 w-full bg-indigo-500"
+          >
+            Download PDF
+          </button>
+        </div>
       </div>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 }

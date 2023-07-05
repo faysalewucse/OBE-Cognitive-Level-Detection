@@ -1,0 +1,2013 @@
+[
+ {
+  "question": "Identify the basic data structures,memory representation and various operations of array",
+  "id": 1
+ },
+ {
+  "question": "Simulate the linear data structure operations of stack and its applications",
+  "id": 2
+ },
+ {
+  "question": "Demonstrate the data structure queue, operations and and applications",
+  "id": 3
+ },
+ {
+  "question": "Implement linked list , operations and its application",
+  "id": 4
+ },
+ {
+  "question": "Simulate nonlinear data structures like tree, graph and their traversal",
+  "id": 5
+ },
+ {
+  "question": "Select and use appropriate data structures for problem sorting and searching",
+  "id": 6
+ },
+ {
+  "question": "Identify the basic data structures,memory representation and various operations of array",
+  "id": 7
+ },
+ {
+  "question": "Simulate the linear data structure operations of stack and its applications",
+  "id": 8
+ },
+ {
+  "question": "Demonstrate the data structure queue, operations and and applications",
+  "id": 9
+ },
+ {
+  "question": "Implement linked list , operations and its application",
+  "id": 10
+ },
+ {
+  "question": "Simulate nonlinear data structures like tree, graph and their traversal",
+  "id": 11
+ },
+ {
+  "question": "Explain the advantages of .NET technology, Architecture and common run time environments",
+  "id": 12
+ },
+ {
+  "question": "Analyse and evaluate the use of various datatypes and data structures",
+  "id": 13
+ },
+ {
+  "question": "Practice decision structures and loop structures for determining different operations and to perform repetitive tasks",
+  "id": 14
+ },
+ {
+  "question": "Construct and debug Visual Basic applications",
+  "id": 15
+ },
+ {
+  "question": "Construct and Deploy Windows and Web applications",
+  "id": 16
+ },
+ {
+  "question": "Construct GUI programming with database application",
+  "id": 17
+ },
+ {
+  "question": "Explain the advantages of .NET technology, Architecture and common run time environments",
+  "id": 18
+ },
+ {
+  "question": "Analyse and evaluate the use of various datatypes and data structures",
+  "id": 19
+ },
+ {
+  "question": "Identify the computer graphics display technologies.",
+  "id": 20
+ },
+ {
+  "question": "Analyze basic computer programming concepts and solve basic C++ programs using selection statements.",
+  "id": 21
+ },
+ {
+  "question": "Design basic C++ programs using looping and jump statements and use pointers and arrays to build programs for evaluation.",
+  "id": 22
+ },
+ {
+  "question": "Demonstrate the use of functions to solve problems.",
+  "id": 23
+ },
+ {
+  "question": "Develop skills to use structures, data handling through files in C++ and describe object oriented concepts such as class, object, inheritance etc.",
+  "id": 24
+ },
+ {
+  "question": "Identify the significance of operating system in computing devices and describe the various structures of operating systems.",
+  "id": 25
+ },
+ {
+  "question": "Apply Inter Process Communication for the communication between application programs.",
+  "id": 26
+ },
+ {
+  "question": "Illustrate basic numerical methods for interpolation and finding roots of equations.",
+  "id": 27
+ },
+ {
+  "question": "Compare and illustrate various synchronization problems with its solution using semaphores and monitors",
+  "id": 28
+ },
+ {
+  "question": "Demonstrate the deadlock avoidance &amp; detection solutions and various process scheduling algorithm analysis.",
+  "id": 29
+ },
+ {
+  "question": "Utilize numerical techniques for integration and solution of partial differential equations.",
+  "id": 30
+ },
+ {
+  "question": "Explain Virtual memory concept and different memory management schemes .",
+  "id": 31
+ },
+ {
+  "question": "Describe the file management and appreciate the need of access control and protection in an operating system.",
+  "id": 32
+ },
+ {
+  "question": "Analyse and solve simple arithmetic and logical    problems using C Programming Language.",
+  "id": 33
+ },
+ {
+  "question": "Organize appropriate algorithms to solve problems using control Structures.",
+  "id": 34
+ },
+ {
+  "question": "Identify the use of structured and modular design principles",
+  "id": 35
+ },
+ {
+  "question": "Demonstrate effective use of derived data types to solve complex problems.",
+  "id": 36
+ },
+ {
+  "question": "Discuss how Android applications work, their life cycle, manifest, Intents, and using external resources",
+  "id": 37
+ },
+ {
+  "question": "Practice decision structures and loop structures for determining different operations and to perform repetitive tasks",
+  "id": 38
+ },
+ {
+  "question": "Construct  and debug Visual Basic applications",
+  "id": 39
+ },
+ {
+  "question": "Construct and Deploy Windows and Web applications",
+  "id": 40
+ },
+ {
+  "question": "Construct GUI programming with database application",
+  "id": 41
+ },
+ {
+  "question": "Implement security functions of different types",
+  "id": 42
+ },
+ {
+  "question": "Interpret  mapping functions and replacement algorithms",
+  "id": 339
+ },
+ {
+  "question": "Demonstrate the engineering and economic involvement in the planning, operation and control of power generation and transmission systems in electric utilities",
+  "id": 43
+ },
+ {
+  "question": "Infer steady state and dynamic response of power system control",
+  "id": 44
+ },
+ {
+  "question": "Interpret the nuances of unit commitment in power systems",
+  "id": 45
+ },
+ {
+  "question": "Demonstrate the characteristics of a wide variety of thermal and hydroelectric power generation systems",
+  "id": 46
+ },
+ {
+  "question": "Interpret the subtle concepts of energy exchanges between different power systems",
+  "id": 47
+ },
+ {
+  "question": "Analyze trusses and determine internal axial forces",
+  "id": 48
+ },
+ {
+  "question": "Infer displacement response of statically determinate structures using energy methods, virtual work methods",
+  "id": 49
+ },
+ {
+  "question": "Analyze statically indeterminate structures using strain energy method and method of consistent deformation",
+  "id": 50
+ },
+ {
+  "question": "Construct influence lines to evaluate the effect of moving loads on statically determinate structures",
+  "id": 51
+ },
+ {
+  "question": "Analyze statically determinate arches, suspension bridges and cables",
+  "id": 52
+ },
+ {
+  "question": "Create a requirements model using UML class notations and use-cases based on statements of user requirements, and to analyze requirements models given to them for correctness and quality.",
+  "id": 53
+ },
+ {
+  "question": "Create the OO design of a system from the requirements model in terms of a high-level architecture description, and low-level models of structural organization and dynamic behavior using UML class, object, and sequence diagrams.",
+  "id": 54
+ },
+ {
+  "question": "Create software that implements the OO designs modeled using UML.",
+  "id": 55
+ },
+ {
+  "question": "Identify the nature of design patterns by understanding a small number of examples from different pattern categories, and to be able to apply these patterns in creating an OO design.",
+  "id": 56
+ },
+ {
+  "question": "Evaluate a design for applicability, reasonableness, and relation to other design criteria against given OO design heuristics, patterns or published guidance.",
+  "id": 57
+ },
+ {
+  "question": "Recognize the 2D transformation concepts and viewing transformation.",
+  "id": 58
+ },
+ {
+  "question": "Employ the 3D geometric and modelling transformations and viewing.",
+  "id": 59
+ },
+ {
+  "question": "Describe the techniques to represent curves and surfaces.",
+  "id": 60
+ },
+ {
+  "question": "Compare surface detection methods and shading methods.",
+  "id": 61
+ },
+ {
+  "question": "Explain the roles that databases play in organizations and familiar with basic database storage and file organization.",
+  "id": 62
+ },
+ {
+  "question": "Identify the database accessing techniques: indexing and hashing.",
+  "id": 63
+ },
+ {
+  "question": "Examine the basics of query processing.",
+  "id": 64
+ },
+ {
+  "question": "Discuss the basics of Object Oriented Databases and XML.",
+  "id": 65
+ },
+ {
+  "question": "Describe the concept of advanced topics such as database performance tuning, distributed databases.",
+  "id": 66
+ },
+ {
+  "question": "Analyze non-relational database systems and structures and New Generation Database Systems like MongoDB.",
+  "id": 67
+ },
+ {
+  "question": "Identify concepts in economics and interpret their role in managerial economics which will be useful in their profession and business.",
+  "id": 68
+ },
+ {
+  "question": "Analyze and interpret demand and supply of goods and services in the economy and its influence and execute production analysis.",
+  "id": 69
+ },
+ {
+  "question": "Recognize the effect of trade cycle in business and analyze various market situations.",
+  "id": 70
+ },
+ {
+  "question": "Measure National Income and evaluate measures taken by RBI in controlling inflation.",
+  "id": 71
+ },
+ {
+  "question": "Analyze, compare and justify investment decisions based on capital budgeting methods.",
+  "id": 72
+ },
+ {
+  "question": "Prepare and analyze balance sheets, interpret taxation system in India, compare different sources of capital for firms and carry out demand forecast.",
+  "id": 73
+ },
+ {
+  "question": "Explain the general characteristics of catalysts and the principle behind the catalytic activity",
+  "id": 74
+ },
+ {
+  "question": "Outline appropriate preparative method for a catalyst",
+  "id": 75
+ },
+ {
+  "question": "Apply the basic concepts and theory for characterization of catalysts",
+  "id": 76
+ },
+ {
+  "question": "Identify various industrial catalysts",
+  "id": 77
+ },
+ {
+  "question": "Analyze catalyst deactivation",
+  "id": 78
+ },
+ {
+  "question": "Describe modern trends in catalyst technology",
+  "id": 79
+ },
+ {
+  "question": "Determine the percentage actual recovery of solutes using various leaching methods such as simple leaching, cross current leaching, and counter current leaching",
+  "id": 80
+ },
+ {
+  "question": "Plan and execute experiments on adsorption isotherm and ternary liquid equilibrium",
+  "id": 81
+ },
+ {
+  "question": "Determine the rate of batch drying and diffusion of vapor in air",
+  "id": 82
+ },
+ {
+  "question": "Plan and execute experiments on simple distillation and liquid-liquid extraction",
+  "id": 83
+ },
+ {
+  "question": "Plan and perform experiments using equipment used in industrial operations such as packed bed absorption and packed bed distillation",
+  "id": 84
+ },
+ {
+  "question": "Derive the magnetic characteristics of iron ring specimen",
+  "id": 85
+ },
+ {
+  "question": "Estimate the resistance, inductance and capacitance of circuit elements",
+  "id": 86
+ },
+ {
+  "question": "Justify DC network theorems by setting up various networks",
+  "id": 87
+ },
+ {
+  "question": "Analyze RLC circuits and coupled circuit to obtain the voltage -current relations",
+  "id": 88
+ },
+ {
+  "question": "Perform calibration of single phase and three phase energy meters at various power factor",
+  "id": 89
+ },
+ {
+  "question": "Determine power in single and three phase circuits by various methods",
+  "id": 90
+ },
+ {
+  "question": "List various casting processes and recall the technology related to each",
+  "id": 91
+ },
+ {
+  "question": "Select the rolling methods required for getting the required shapes of rolled products",
+  "id": 92
+ },
+ {
+  "question": "Identify the important aspects of the forging techniques",
+  "id": 93
+ },
+ {
+  "question": "Discuss the principles of location and clamping",
+  "id": 94
+ },
+ {
+  "question": "Compare the different sheet metal working processes and justify their applications to produce various shapes and products",
+  "id": 95
+ },
+ {
+  "question": "Explain various types of welding processes",
+  "id": 96
+ },
+ {
+  "question": "Design an algorithmic solution for a given problem",
+  "id": 97
+ },
+ {
+  "question": "Choose the loops and decision making statements  to solve the problem",
+  "id": 98
+ },
+ {
+  "question": "Infer various authentication protocols and processes",
+  "id": 1731
+ },
+ {
+  "question": "Use simple data structures like arrays, stacks and linked list in solving  problems.",
+  "id": 99
+ },
+ {
+  "question": "Explain programs with pointers and arrays,pointer  arithmetic, and use the pre-processor techniques",
+  "id": 100
+ },
+ {
+  "question": "Practice simple applications of real life using structures and files.",
+  "id": 101
+ },
+ {
+  "question": "Demonstrate file Operations in C programming for a  given application",
+  "id": 102
+ },
+ {
+  "question": "Apply optimization techniques to formulate and solve practical problems",
+  "id": 103
+ },
+ {
+  "question": "Apply different numerical methods for optimization of single variable unconstrained functions",
+  "id": 104
+ },
+ {
+  "question": "Solve unconstrained multivariable optimization problems",
+  "id": 105
+ },
+ {
+  "question": "Solve linear programming and nonlinear programming problems with constraints using various methods",
+  "id": 106
+ },
+ {
+  "question": "Analyze typical applications of optimization techniques in chemical process industries",
+  "id": 107
+ },
+ {
+  "question": "Apply design principles and concepts to algorithm design",
+  "id": 108
+ },
+ {
+  "question": "Analyze the efficiency of algorithms using time and space complexity theory",
+  "id": 109
+ },
+ {
+  "question": "Analyze worst-case running times of algorithms using asymptotic analysis",
+  "id": 110
+ },
+ {
+  "question": "Illustrate different algorithmic design strategies",
+  "id": 111
+ },
+ {
+  "question": "Identify appropriate data structure and  algorithm for a given contextual problem",
+  "id": 112
+ },
+ {
+  "question": "Identify the use of algorithm in program developing.",
+  "id": 113
+ },
+ {
+  "question": "Demonstrate basic concepts of data input and output, operators and expression and control statements.",
+  "id": 114
+ },
+ {
+  "question": "Formulate structured programming using various programming constructs.",
+  "id": 115
+ },
+ {
+  "question": "Illustrate the use of various data types with demonstration programs.",
+  "id": 116
+ },
+ {
+  "question": "Use simple data structures like arrays, stacks and linked list in solving problems",
+  "id": 117
+ },
+ {
+  "question": "Apply file Operations in C programming for a  given application.",
+  "id": 118
+ },
+ {
+  "question": "Identify specific and  main details in an academic lecture",
+  "id": 119
+ },
+ {
+  "question": "Apply reading strategies to compare and contrast information in a text",
+  "id": 120
+ },
+ {
+  "question": "Plan ,conduct and demonstrate leadership skills in a Group Discussion",
+  "id": 121
+ },
+ {
+  "question": "Use appropriate vocabulary in formal contexts",
+  "id": 122
+ },
+ {
+  "question": "Prepare formal letters",
+  "id": 123
+ },
+ {
+  "question": "Design formal presentations and posters in a creative manner",
+  "id": 124
+ },
+ {
+  "question": "Apply the concept of random variables, probability distributions, specific discrete distributions in various Engineering and social life situations",
+  "id": 125
+ },
+ {
+  "question": "Utilize specific continuous distributions in various Engineering and social life situations.",
+  "id": 126
+ },
+ {
+  "question": "Employ the concept of joint distributions and the central limit theorem in various Engineering situations",
+  "id": 127
+ },
+ {
+  "question": "Demonstrate the theory of  random processes to model problems in communication engineering",
+  "id": 128
+ },
+ {
+  "question": "Interpret the theory of  special random processes such as Poisson and Markov models to model problems in communication engineering",
+  "id": 129
+ },
+ {
+  "question": "Solve various engineering problems using numerical methods",
+  "id": 130
+ },
+ {
+  "question": "Demonstrate the theoretical basis of General procedure of FEA",
+  "id": 131
+ },
+ {
+  "question": "Perform finite element formulations for simple engineering problems",
+  "id": 132
+ },
+ {
+  "question": "Derive shape functions using different methods",
+  "id": 133
+ },
+ {
+  "question": "Derive stiffness matrix for various elements",
+  "id": 134
+ },
+ {
+  "question": "Model complex geometry problems using finite element technology",
+  "id": 135
+ },
+ {
+  "question": "Illustrate the theory of plate bending.",
+  "id": 136
+ },
+ {
+  "question": "Possess a good understanding of the theoretical basis of General procedure of FEA",
+  "id": 137
+ },
+ {
+  "question": "Perform finite element formulations for simple engineering problems",
+  "id": 138
+ },
+ {
+  "question": "Derive shape functions using different methods",
+  "id": 139
+ },
+ {
+  "question": "Derive stiffness matrix for various elements",
+  "id": 140
+ },
+ {
+  "question": "Model complex geometry problems using finite element technology",
+  "id": 141
+ },
+ {
+  "question": "Possess a good understanding of plate bending theory",
+  "id": 142
+ },
+ {
+  "question": "Possess a good understanding of the classification of plates and formulation of differential equation",
+  "id": 143
+ },
+ {
+  "question": "Derive different relationships in Pure bending of plates",
+  "id": 144
+ },
+ {
+  "question": "Analyse and solve laterally loaded rectangular plates at different boundary conditions",
+  "id": 145
+ },
+ {
+  "question": "Identify and select necessary components used in various electronic circuits.",
+  "id": 146
+ },
+ {
+  "question": "Solve simply supported rectangular plates under different loading conditions",
+  "id": 147
+ },
+ {
+  "question": "Analyse circular plates using polar coordinates",
+  "id": 148
+ },
+ {
+  "question": "Analyse shell structures and folded plates",
+  "id": 149
+ },
+ {
+  "question": "Design and organize simple circuits using different types of diodes and transistors",
+  "id": 150
+ },
+ {
+  "question": "Possess a good understanding of the classification of plates and formulation of differential equation",
+  "id": 151
+ },
+ {
+  "question": "Derive different relationships in Pure bending of plates",
+  "id": 152
+ },
+ {
+  "question": "Analyse and solve laterally loaded rectangular plates at different boundary conditions",
+  "id": 153
+ },
+ {
+  "question": "Solve simply supported rectangular plates under different loading conditions",
+  "id": 154
+ },
+ {
+  "question": "Analyse circular plates using polar coordinates",
+  "id": 155
+ },
+ {
+  "question": "Analyse shell structures and folded plates",
+  "id": 156
+ },
+ {
+  "question": "Demonstrate the working of analog circuits such as rectifiers, amplifiers and oscillators.",
+  "id": 157
+ },
+ {
+  "question": "Illustrate the working of basic building blocks of analog and digital systems such as    Operational amplifiers and Logic gates.",
+  "id": 158
+ },
+ {
+  "question": "Demonstrate the use of basic measuring instruments used in electronics work.",
+  "id": 159
+ },
+ {
+  "question": "Identify and select necessary components used in various electronic circuits and  testing  using a multimeter",
+  "id": 160
+ },
+ {
+  "question": "Generate waveforms with required frequency and amplitude using function generator and measure voltage, frequency and phase of any waveform using CRO.",
+  "id": 161
+ },
+ {
+  "question": "Analyze characteristics of simple circuits like rectifiers, multivibrators ,logic gates using transistors etc           using bread board and soldering",
+  "id": 162
+ },
+ {
+  "question": "Demonstrate the working of  Public  Address System",
+  "id": 163
+ },
+ {
+  "question": "To simulate  electronics circuits using  LTSPICE and study the response",
+  "id": 164
+ },
+ {
+  "question": "Memorise the basic terms used in the field of civil engineering",
+  "id": 165
+ },
+ {
+  "question": "Comprehend questions asked on civil engineering issues",
+  "id": 166
+ },
+ {
+  "question": "Quickly associate real life issues to text book solutions",
+  "id": 167
+ },
+ {
+  "question": "Apply the basic principles of civil engineering in solving real time issues",
+  "id": 168
+ },
+ {
+  "question": "Communicate with confidence on civil engineering solutions",
+  "id": 169
+ },
+ {
+  "question": "Identify appropriate AI methods to solve a given problem",
+  "id": 170
+ },
+ {
+  "question": "Apply different knowledge representation schemes to organize and manage the knowledge in an intelligent system",
+  "id": 171
+ },
+ {
+  "question": "Analyze basic AI search algorithms",
+  "id": 172
+ },
+ {
+  "question": "Apply knowledge representation, reasoning, and machine learning techniques to real-world problems",
+  "id": 173
+ },
+ {
+  "question": "Prepare to conduct research in NLP or related fields",
+  "id": 174
+ },
+ {
+  "question": "Define and apply search algorithms to solve example problems using Artificial Intelligence language. ",
+  "id": 175
+ },
+ {
+  "question": "Describe knowledge representation using propositional and predicate logic for Artificial Intelligence applications .",
+  "id": 176
+ },
+ {
+  "question": "Identify learning methods and techniques to find concept description for prediction problems.",
+  "id": 177
+ },
+ {
+  "question": "Describe fuzzy logic  role to express knowledge and knowledge processing in expert systems.",
+  "id": 178
+ },
+ {
+  "question": "Identify and analyze the sources and effects of air pollution",
+  "id": 179
+ },
+ {
+  "question": "Describe the characteristics of water and the relevant purity standards",
+  "id": 180
+ },
+ {
+  "question": "Identify composition of industrial waste and its treatment methods",
+  "id": 181
+ },
+ {
+  "question": "Identify composition of solid waste and sources of waste generation",
+  "id": 182
+ },
+ {
+  "question": "Identify and analyze the causes and sources of  noise pollution and its control",
+  "id": 183
+ },
+ {
+  "question": "Identify different water constituents present in a wastewater sample.",
+  "id": 184
+ },
+ {
+  "question": "Identify the various types of treatment methods for wastewater",
+  "id": 185
+ },
+ {
+  "question": "Illustrate and design various treatment units in a wastewater treatment plant",
+  "id": 186
+ },
+ {
+  "question": "Identify suitable waste water disposal methods for domestic sewage",
+  "id": 187
+ },
+ {
+  "question": "Select suitable need-based sanitary fixtures for any civil engineering work.",
+  "id": 188
+ },
+ {
+  "question": "Identify the pavement components and design bituminous mixes",
+  "id": 189
+ },
+ {
+  "question": "Analyze and design of flexible pavements.",
+  "id": 190
+ },
+ {
+  "question": "Analyze and design rigid pavements.",
+  "id": 191
+ },
+ {
+  "question": "Design longitudinal, contraction and expansion joints in cement concrete pavements.",
+  "id": 192
+ },
+ {
+  "question": "Evaluate structural condition of pavement.",
+  "id": 193
+ },
+ {
+  "question": "Explain the basic properties of fuels. stages of combustion, and different combustion chamber designs",
+  "id": 194
+ },
+ {
+  "question": "Analysis and specialises the concepts of Mobile Communication and Computing Technologies",
+  "id": 195
+ },
+ {
+  "question": "Analyze the concepts and working of various mobile networks.",
+  "id": 196
+ },
+ {
+  "question": "Interpret various mobile OS concepts.",
+  "id": 197
+ },
+ {
+  "question": "Interpret and apply the key technological principles, protocols and methods for delivering and maintaining mobile applications",
+  "id": 198
+ },
+ {
+  "question": "Arrange different  Android Development Environments and programs",
+  "id": 199
+ },
+ {
+  "question": "Tell current standard-compliant scripting\/programming techniques for the successful deployment of mobile applications targeting a variety of platforms.",
+  "id": 200
+ },
+ {
+  "question": "Demonstrate the working of IC engines",
+  "id": 201
+ },
+ {
+  "question": "Analyze the performance characteristics of IC engines",
+  "id": 202
+ },
+ {
+  "question": "Determine the properties of fuels",
+  "id": 203
+ },
+ {
+  "question": "Analyze the effect of losses from IC engines",
+  "id": 204
+ },
+ {
+  "question": "Discuss the working air compressors",
+  "id": 205
+ },
+ {
+  "question": "Measure the performance parameters of blowers",
+  "id": 206
+ },
+ {
+  "question": "Explain  Android platform and the Android Studio IDE",
+  "id": 207
+ },
+ {
+  "question": "Differentiate   Android components, Activities and their lifecycle, Intents",
+  "id": 208
+ },
+ {
+  "question": "Design and understand UI Design: Widgets and Layouts, UI Events, Event Listeners",
+  "id": 209
+ },
+ {
+  "question": "organize the Use of 2D graphics: Canvas\/Drawing using a view",
+  "id": 210
+ },
+ {
+  "question": "Experiment and build a functional Android application",
+  "id": 211
+ },
+ {
+  "question": "Manage and Debug Android applications using different tools and plugins",
+  "id": 212
+ },
+ {
+  "question": "Illustrate   basic concepts of finite element applications",
+  "id": 213
+ },
+ {
+  "question": "Formulate the design equations for FEM",
+  "id": 214
+ },
+ {
+  "question": "Model complex geometry problems using finite element technology",
+  "id": 215
+ },
+ {
+  "question": "Gain knowledge and research in tractor and its attachments",
+  "id": 1451
+ },
+ {
+  "question": "Solve basic Engineering problems using FEM",
+  "id": 216
+ },
+ {
+  "question": "Formulate isoparametric equations for different types of elements",
+  "id": 217
+ },
+ {
+  "question": "Define Lift technology and types of cranes",
+  "id": 1450
+ },
+ {
+  "question": "Analyze the parameters with which the efficiency of cellular systems can be enhanced",
+  "id": 218
+ },
+ {
+  "question": "Analyze the various radio wave propagation models and select the appropriate one as per requirements",
+  "id": 219
+ },
+ {
+  "question": "Identify the concepts of fading and evaluate the performance",
+  "id": 220
+ },
+ {
+  "question": "Evaluate different multiple access techniques",
+  "id": 221
+ },
+ {
+  "question": "Demonstrate the basic principles of GSM &amp; CDMA technologies",
+  "id": 222
+ },
+ {
+  "question": "Comprehend the features of CDMA digital cellular standards",
+  "id": 223
+ },
+ {
+  "question": "Demonstrate how to represent a problem using a production system",
+  "id": 224
+ },
+ {
+  "question": "Analyze Big Data Fundamentals",
+  "id": 225
+ },
+ {
+  "question": "Apply  the software engineering principles in a software project",
+  "id": 226
+ },
+ {
+  "question": "Demonstrate Hadoop applications for Big Data.",
+  "id": 227
+ },
+ {
+  "question": "Develop a software product using the Agile methodology.",
+  "id": 228
+ },
+ {
+  "question": "Examine Analytic results using HDFS.",
+  "id": 229
+ },
+ {
+  "question": "Apply build tools and IDE Environment",
+  "id": 230
+ },
+ {
+  "question": "Experiment with different version control system such as GitHub",
+  "id": 231
+ },
+ {
+  "question": "Apply the concepts of MapReduce framework",
+  "id": 232
+ },
+ {
+  "question": "Apply technology tools to  analyse, design, develop and test the application",
+  "id": 233
+ },
+ {
+  "question": "Compare Big Data Storage Technologies.",
+  "id": 234
+ },
+ {
+  "question": "Design a system, model, component or a process to meet desired\/industrial needs",
+  "id": 235
+ },
+ {
+  "question": "Select an apropriate analysis technique for Data analysis project.",
+  "id": 236
+ },
+ {
+  "question": "Design a system, model, component or a process to meet  desired\/industrial needs",
+  "id": 237
+ },
+ {
+  "question": "Analyze the principles of software delivery and Configuration Management System",
+  "id": 238
+ },
+ {
+  "question": "Experiment with GIT and gain knowledge in continuous integration environment",
+  "id": 239
+ },
+ {
+  "question": "Analyze the stages of  deployment pipeline that leads to the deployment of an application",
+  "id": 240
+ },
+ {
+  "question": "Describe the working of  automated testing tools for functional and non functional requirements",
+  "id": 241
+ },
+ {
+  "question": "Analyze best coding practices and apply the same in their academic projects",
+  "id": 242
+ },
+ {
+  "question": "Infer the pragmatic approach for developing an industry ready application",
+  "id": 243
+ },
+ {
+  "question": "Apply the software engineering principles on a real software project",
+  "id": 244
+ },
+ {
+  "question": "Develop a software product using the Agile methodology",
+  "id": 245
+ },
+ {
+  "question": "Apply build tools and IDE Environment",
+  "id": 246
+ },
+ {
+  "question": "Work with different version control system such as git",
+  "id": 247
+ },
+ {
+  "question": "Apply technology tools to analyse, design, develop and test the application",
+  "id": 248
+ },
+ {
+  "question": "Design a system, model, component or a process to meet desired\/industrial needs",
+  "id": 249
+ },
+ {
+  "question": "Demonstrate the working of standard digital ICs and basic building blocks of logic circuits.",
+  "id": 250
+ },
+ {
+  "question": "Demonstrate the functioning of various combinational circuits and design adders.",
+  "id": 251
+ },
+ {
+  "question": "Realize MUX and DEMUX circuits and design combinational circuits using them",
+  "id": 252
+ },
+ {
+  "question": "Analyze electromagnetic field distribution and directivity of antennas",
+  "id": 253
+ },
+ {
+  "question": "Evaluate various techniques involved in the measurement of all relevant antenna parameters.",
+  "id": 254
+ },
+ {
+  "question": "Design various antennas, antenna arrays and work out radiation patterns of antennas",
+  "id": 255
+ },
+ {
+  "question": "Compare and demonstrate the basic working of different types of antennas",
+  "id": 256
+ },
+ {
+  "question": "Evaluate atmospheric and terrestrial effects on radio wave propagation.",
+  "id": 1751
+ },
+ {
+  "question": "Model any type of structure with computer software.",
+  "id": 257
+ },
+ {
+  "question": "Analyze and design structures using softwares based on IS codal provisions.",
+  "id": 258
+ },
+ {
+  "question": "Demonstrate the basic concepts of AUTOCAD to develop structural drawings",
+  "id": 259
+ },
+ {
+  "question": "Perform survey operations using Total Station.",
+  "id": 260
+ },
+ {
+  "question": "Create and track an entire project to its completion using the elements of project management.",
+  "id": 261
+ },
+ {
+  "question": "Demonstrate the functional units of a computer and explain how arithmetic and logical operations are performed.",
+  "id": 262
+ },
+ {
+  "question": "Identify and apply different types of assembly language and machine language instructions",
+  "id": 263
+ },
+ {
+  "question": "Evaluate various addressing modes and compiler operations",
+  "id": 264
+ },
+ {
+  "question": "Illustrate the architecture of different processors and evaluate the performance of the CPU.",
+  "id": 265
+ },
+ {
+  "question": "Demonstrate the operation of different I\/O systems and Memory devices.",
+  "id": 266
+ },
+ {
+  "question": "Recognize  and aply the concepts needed to test the logic of a program using propositions",
+  "id": 267
+ },
+ {
+  "question": "Interpret the concepts needed to test the logic of a program using predicates",
+  "id": 268
+ },
+ {
+  "question": "Explain number theory and apply it to ensure  secure  communication",
+  "id": 269
+ },
+ {
+  "question": "Use a combination of theoretical knowledge and independent mathematical thinking in creative evaluation of questions in graph theory",
+  "id": 270
+ },
+ {
+  "question": "Differentiate between Eulerian and Hamiltonian graphs",
+  "id": 271
+ },
+ {
+  "question": "Analyse the properties of trees and able to find a minimal spanning tree for a given weighted graph",
+  "id": 272
+ },
+ {
+  "question": "Analyse different phenomena associated with the generation and propagation of oscillations and waves",
+  "id": 273
+ },
+ {
+  "question": "Demonstrate wave-like phenomena associated with light and use them to measureits properties",
+  "id": 274
+ },
+ {
+  "question": "Illustrate the phenomenon of superconductivity and evaluate the properties of the superconducting state",
+  "id": 275
+ },
+ {
+  "question": "Identify the features of quantum and statistical phenomena and demonstrate the dynamics of microscopic entities.",
+  "id": 276
+ },
+ {
+  "question": "Describe the production and properties of acoustic and ultrasonic waves and demonstrate their applications.",
+  "id": 277
+ },
+ {
+  "question": "Outline the construction and properties of different lasers and optoelectronic devices, and  identify their applications",
+  "id": 278
+ },
+ {
+  "question": "Demonstrate the principles of spectroscopy and apply them to explain chemical phenomena",
+  "id": 279
+ },
+ {
+  "question": "Illustrate principles and applications of various electrochemical techniques and cells.",
+  "id": 280
+ },
+ {
+  "question": "Describe instrumental methods like chromatography, conductivity and thermal analysis for chemical analysis.",
+  "id": 281
+ },
+ {
+  "question": "Recognize the properties and applications of engineering materials, such as polymers and nanomaterials",
+  "id": 282
+ },
+ {
+  "question": "Evaluate the properties of complex chemicals such as fuels and lubricants.",
+  "id": 283
+ },
+ {
+  "question": "Describe the properties of water and identify methods for water purification",
+  "id": 284
+ },
+ {
+  "question": "Measure basic physical quantities, such as voltage, frequency, temperature etc and evaluate measurement accuracy.",
+  "id": 285
+ },
+ {
+  "question": "Measure and analyse the properties of electrical and acoustic waves and oscillations, and demonstrate resonance.",
+  "id": 286
+ },
+ {
+  "question": "Demonstrate wave-like properties of light and measure the wavelength of monochromatic light sources",
+  "id": 287
+ },
+ {
+  "question": "Illustrate the propagation of light through an optical fibre and measure its numerical aperture",
+  "id": 288
+ },
+ {
+  "question": "Demonstrate the working of devices such as solar cells and photoelectric cells",
+  "id": 289
+ },
+ {
+  "question": "Construct useful Android applications with compelling user interfaces by using, extending, and creating your own layouts and Views and using Menus",
+  "id": 290
+ },
+ {
+  "question": "Organize an experimental set up and measure fundamental constants such as the PlanckÃ¢â‚¬â„¢s constant.",
+  "id": 291
+ },
+ {
+  "question": "Analyze and apply the role of mark-up languages like HTML and implement basic pages",
+  "id": 292
+ },
+ {
+  "question": "Analyze and create web pages using HTML, and Cascading Styles sheets.",
+  "id": 293
+ },
+ {
+  "question": "Build dynamic web pages using JavaScript (client side programming).",
+  "id": 294
+ },
+ {
+  "question": "Implement the usage of DOM in web pages",
+  "id": 295
+ },
+ {
+  "question": "Implement the usage of XML for various applications",
+  "id": 296
+ },
+ {
+  "question": "Demonstrate Bernoulli equation and its application to measurement of flow using different equipments",
+  "id": 297
+ },
+ {
+  "question": "Build interactive web applications using PHP",
+  "id": 298
+ },
+ {
+  "question": "Demonstrate  the stability of floating bodies",
+  "id": 299
+ },
+ {
+  "question": "Demonstrate the working of different types of valves and identify the losses involved in pipe flow",
+  "id": 300
+ },
+ {
+  "question": "Identify an appropriate pump for any given application\/situation and estimate its efficiency.",
+  "id": 301
+ },
+ {
+  "question": "Ableto build basic web pages using HTML",
+  "id": 302
+ },
+ {
+  "question": "Ableto use CSS to style web pages",
+  "id": 303
+ },
+ {
+  "question": "Ableto make use of JavaScript to create dynamic content",
+  "id": 304
+ },
+ {
+  "question": "Able make use of PHP and MySQLto build Web Applications",
+  "id": 305
+ },
+ {
+  "question": "Able to make use XML and XSLT",
+  "id": 306
+ },
+ {
+  "question": "Demonstrate a sound understanding of fundamental concepts of operational amplifiers",
+  "id": 307
+ },
+ {
+  "question": "Evaluate the diversity of operations that op amp can perform in a wide range of applications",
+  "id": 308
+ },
+ {
+  "question": "Demonstrate a few special functions integrated circuits",
+  "id": 309
+ },
+ {
+  "question": "Demonstrate basic concepts and types of data converters",
+  "id": 310
+ },
+ {
+  "question": "Demonstrate the basic concepts and operating parameters of OPAMP",
+  "id": 311
+ },
+ {
+  "question": "Analyze and design various applications of OPAMP such as Sinusoidal and Non  Sinusoidal Oscillators.",
+  "id": 312
+ },
+ {
+  "question": "Interpret  and design the applications of OPAMP such as Rectifier, Filters",
+  "id": 313
+ },
+ {
+  "question": "Design, implement and test Integrated circuit such as Timer IC 555.",
+  "id": 314
+ },
+ {
+  "question": "Gain comprehensive understanding of digital images and its features",
+  "id": 315
+ },
+ {
+  "question": "Apply the concept of random variables, probability distributions, specific discrete distributions in various Engineering and social life situations",
+  "id": 316
+ },
+ {
+  "question": "Design of eccentrically loaded and slender columns using SP 16 design charts and different      types of foundations",
+  "id": 317
+ },
+ {
+  "question": "Apply specific continuous distributions in various Engineering and social life situations",
+  "id": 318
+ },
+ {
+  "question": "Distinguish \/ Analyse the various concepts and mathematical transforms necessary for image processing",
+  "id": 319
+ },
+ {
+  "question": "Understand  sampling distributions",
+  "id": 320
+ },
+ {
+  "question": "Apply sampling distributions in practical situations",
+  "id": 321
+ },
+ {
+  "question": "Compare and contrast the  various techniques used for image restoration",
+  "id": 325
+ },
+ {
+  "question": "Solve various engineering problems using numerical methods for solution of equations and interpolation",
+  "id": 322
+ },
+ {
+  "question": "Use numerical methods for integration,differentiation and solution of differential equations",
+  "id": 323
+ },
+ {
+  "question": "Differentiate and interpret the various image enhancement techniques",
+  "id": 324
+ },
+ {
+  "question": "Identify different techniques used for image segmentation",
+  "id": 326
+ },
+ {
+  "question": "Analyse basic image compression techniques",
+  "id": 327
+ },
+ {
+  "question": "Identify the importance of the user interface",
+  "id": 328
+ },
+ {
+  "question": "Analyse and evaluate  user interface design process",
+  "id": 329
+ },
+ {
+  "question": "Demonstrate an integrated development environment  using menus and navigation schemes",
+  "id": 330
+ },
+ {
+  "question": "Discuss the basics of window operations and device based controls",
+  "id": 331
+ },
+ {
+  "question": "Demonstrate on internationalization",
+  "id": 332
+ },
+ {
+  "question": "Identify and describe testing methods to maintain a good interface",
+  "id": 333
+ },
+ {
+  "question": "Sketch basic structure of computer",
+  "id": 334
+ },
+ {
+  "question": "Gain familiarity with CDMA mobile standards.",
+  "id": 341
+ },
+ {
+  "question": "Compare different addressing modes used in instructions",
+  "id": 335
+ },
+ {
+  "question": "Explain the concepts of input\/output organization",
+  "id": 336
+ },
+ {
+  "question": "Examine basic processing unit",
+  "id": 337
+ },
+ {
+  "question": "Identify the concepts of Memory System",
+  "id": 338
+ },
+ {
+  "question": "Explain cellular concepts and  multiple access systems",
+  "id": 340
+ },
+ {
+  "question": "Describe the  UMTS protocols and architecture.",
+  "id": 342
+ },
+ {
+  "question": "State the concepts of 3G services and Applications",
+  "id": 343
+ },
+ {
+  "question": "Familiarise the concepts and understand the working of 4G networks",
+  "id": 344
+ },
+ {
+  "question": "Outline the general configuration of biomedical instruments and demonstrate the origin of bio electric signals.",
+  "id": 345
+ },
+ {
+  "question": "To illuatrate the concepts of neural networks and applications",
+  "id": 346
+ },
+ {
+  "question": "Demonstrate the working of various biopotential electrodes as well as an ECG machine.",
+  "id": 347
+ },
+ {
+  "question": "Identify the techniques generally adopted for biomedical measurements and signal analysis.",
+  "id": 348
+ },
+ {
+  "question": "To identify linear  classification problems and to find suitable solutions",
+  "id": 349
+ },
+ {
+  "question": "To analyse the methods of supervised and unsupervised learning.",
+  "id": 350
+ },
+ {
+  "question": "Illustrate the working of biomedical instruments utilizing signals from heart brain and lungs.",
+  "id": 351
+ },
+ {
+  "question": "Demonstrate the working of biomedical instruments employing different types of radiant energy and imaging techniques.",
+  "id": 352
+ },
+ {
+  "question": "Identify instruments used for clinical tets and demonstrate the potential hazards involved in the use of biomedical instruments.",
+  "id": 353
+ },
+ {
+  "question": "To analyse non- linear  classification problems and to find suitable solutions",
+  "id": 354
+ },
+ {
+  "question": "Understand the concepts that underlie distributed computing systems along with design and implementation issues",
+  "id": 355
+ },
+ {
+  "question": "Explain various concepts of Data mining and Data Warehouse",
+  "id": 356
+ },
+ {
+  "question": "Experiment different data preprocessing techniques",
+  "id": 357
+ },
+ {
+  "question": "Categorize different types of Data",
+  "id": 358
+ },
+ {
+  "question": "Define key mechanisms and analyze different models for distributed systems",
+  "id": 359
+ },
+ {
+  "question": "Analyze and evaluate different software process models for the design and and development of a software product",
+  "id": 1906
+ },
+ {
+  "question": "Explain the  different types of file systems and naming services which are used by different client processes.",
+  "id": 360
+ },
+ {
+  "question": "Apply Clustering Methods to analyze Business Trends",
+  "id": 361
+ },
+ {
+  "question": "Understand the concept of  time related issues in distributed systems.",
+  "id": 362
+ },
+ {
+  "question": "Implement different election algorithms related to the issue of how processes coordinate their actions and agree on shared values in distributed systems",
+  "id": 363
+ },
+ {
+  "question": "Analyze various applications of data mining",
+  "id": 364
+ },
+ {
+  "question": "Explain different shared memory programming models in distributed systems",
+  "id": 365
+ },
+ {
+  "question": "Construct frequent itemsets from data sets",
+  "id": 366
+ },
+ {
+  "question": "Analyze the asymptotic performance of algorithms.",
+  "id": 367
+ },
+ {
+  "question": "Solve recurrence equations using Iteration Method, Recurrence Tree Method and MasterÃ¢â‚¬â„¢s Theorem.",
+  "id": 368
+ },
+ {
+  "question": "Employ data structures like graphs, AVL trees , RedBlack trees, B-trees etc to model engineering problems, when appropriate.",
+  "id": 369
+ },
+ {
+  "question": "Design algorithms using greedy strategy, divide and conquer approach, dynamic programming",
+  "id": 370
+ },
+ {
+  "question": "Design efficient algorithms using Back Tracking and Branch Bound Techniques for solving problems.",
+  "id": 371
+ },
+ {
+  "question": "Classify computational problems into P, NP, NP-Hard and NP-Complete",
+  "id": 372
+ },
+ {
+  "question": "Relate the concepts of object-oriented programming paradigms and demonstrate skills in these paradigms using Java.",
+  "id": 373
+ },
+ {
+  "question": "Apply characteristics of Java Applets, Exceptions, Multi-threading, Streams, Networking etc.",
+  "id": 374
+ },
+ {
+  "question": "Identify the usage of HTML tags in Applets. Examine the basic principles of  creating Java applications with graphical user interface (GUI).",
+  "id": 375
+ },
+ {
+  "question": "Construct the classes needed for a given problem specification.",
+  "id": 376
+ },
+ {
+  "question": "Setup and formulate classes using the object oriented programming language.",
+  "id": 377
+ },
+ {
+  "question": "Conclude how to test, verify, and debug object-oriented programs and create programs using object oriented principles",
+  "id": 378
+ },
+ {
+  "question": "Evaluate the computer graphics display techniques and categorize various graphic software systems",
+  "id": 379
+ },
+ {
+  "question": "Analyse the basic output primitive drawing algorithms along with 2D transformation concepts  to display the objects",
+  "id": 380
+ },
+ {
+  "question": "Devise the projection transformations  and explain the 3D object represenation models",
+  "id": 381
+ },
+ {
+  "question": "Demonstrate the 3D transformation concepts to model an object",
+  "id": 382
+ },
+ {
+  "question": "Evaluate different surface detection methods",
+  "id": 383
+ },
+ {
+  "question": "Interpret and analyze different forces acting on different mechanisms when they are stationary or in motion.",
+  "id": 384
+ },
+ {
+  "question": "Analyze the forces acting on different types of gears under working conditions.",
+  "id": 385
+ },
+ {
+  "question": "Interpret the balancing of rotating and reciprocating masses and examine balancing multi- cylinder engines and balancing of machines.",
+  "id": 386
+ },
+ {
+  "question": "Identify the different elements involved in good designs and practice them when called for.",
+  "id": 387
+ },
+ {
+  "question": "Solve the different stages of Design and formulate detailed designs with solid modeling and visualization.",
+  "id": 388
+ },
+ {
+  "question": "Develop the prototype and propose various stages towards final product design.",
+  "id": 389
+ },
+ {
+  "question": "Build a broader perspective of design covering the function, cost, environmental sensitivity, safety and factors other than from engineering analysis",
+  "id": 390
+ },
+ {
+  "question": "Identify product oriented and user oriented aspects that make the customer required design.",
+  "id": 391
+ },
+ {
+  "question": "Utilize various modern engineering methods and build basic knowledge of Intellectual Property Rights.",
+  "id": 392
+ },
+ {
+  "question": "Apply the concept of random variables, probability distributions, specific discrete distributions in various Engineering problems.",
+  "id": 393
+ },
+ {
+  "question": "Utilize specific continuous distributions in various Engineering problems.",
+  "id": 394
+ },
+ {
+  "question": "Use Laplace transforms for engineering applications.",
+  "id": 395
+ },
+ {
+  "question": "Implement  Fourier transforms for engineering applications.",
+  "id": 396
+ },
+ {
+  "question": "Solve various engineering problems using numerical methods for solution of equations and interpolation.",
+  "id": 397
+ },
+ {
+  "question": "Employ  numerical methods for integration, differentiation and solution of differential equations",
+  "id": 398
+ },
+ {
+  "question": "Gain the relationships between damage and defects in materials",
+  "id": 1875
+ },
+ {
+  "question": "Use fundamental theories of fluid mechanics for the analysis of hydraulic machines",
+  "id": 399
+ },
+ {
+  "question": "Design components of turbines and pumps and study their characteristics",
+  "id": 400
+ },
+ {
+  "question": "Develop open channel flow equations from the basic principles and laws of fluid mechanics",
+  "id": 401
+ },
+ {
+  "question": "Apply dimensional analysis principle for problems in fluid mechanics",
+  "id": 402
+ },
+ {
+  "question": "Recognize and apply basic modeling laws in fluid mechanics to solve problems",
+  "id": 403
+ },
+ {
+  "question": "Analyse reactions of various supports under equilibrium",
+  "id": 404
+ },
+ {
+  "question": "Determine the forces in planar and spatial systems",
+  "id": 405
+ },
+ {
+  "question": "Comprehend the properties of planes and solids",
+  "id": 406
+ },
+ {
+  "question": "Determine friction under static conditions",
+  "id": 407
+ },
+ {
+  "question": "Select conducting, insulating, magnetic, superconducting and semiconducting materials for various engineering applications.",
+  "id": 439
+ },
+ {
+  "question": "Identify basic concepts of dynamic problems",
+  "id": 409
+ },
+ {
+  "question": "Determine physical and index properties of soil and classify soils based on standard  geotechnical engineering practice",
+  "id": 410
+ },
+ {
+  "question": "Interpret working principle of different type of  Circuit breakers.",
+  "id": 411
+ },
+ {
+  "question": "Evaluate different type of  Circuit breakers and their operation.",
+  "id": 412
+ },
+ {
+  "question": "Interpret the principle and functioning of different types of Electromagnetic protective relays",
+  "id": 413
+ },
+ {
+  "question": "Apply the principle and functioning of different types of Static and  Microprocessor  protective relays",
+  "id": 414
+ },
+ {
+  "question": "Practice the protection of Generators, Motors, Transformers and Transmission Lines",
+  "id": 415
+ },
+ {
+  "question": "Analyse causes and effects of surges and protective measures",
+  "id": 416
+ },
+ {
+  "question": "Assess the characteristics of aggregates used in pavement construction",
+  "id": 417
+ },
+ {
+  "question": "Evaluate the quality of subgrade soil used in pavement construction",
+  "id": 418
+ },
+ {
+  "question": "Assess the properties of bitumen to be used in pavement construction",
+  "id": 419
+ },
+ {
+  "question": "Analyze the properties of various bituminous mixes",
+  "id": 420
+ },
+ {
+  "question": "Evaluate the functional characteristics of pavements",
+  "id": 421
+ },
+ {
+  "question": "Analyze and design switched mode power converters",
+  "id": 422
+ },
+ {
+  "question": "Develop and apply different soft switching techniques",
+  "id": 423
+ },
+ {
+  "question": "Identify different pulse width modulation techniques and their application in switched mode converters",
+  "id": 424
+ },
+ {
+  "question": "Illustrate the effect of magnetism and resonance in switched mode converters",
+  "id": 425
+ },
+ {
+  "question": "Choose appropriate power converter topologies and design power stages for various applications",
+  "id": 426
+ },
+ {
+  "question": "Identify the basic structure and functional units of a digital computer",
+  "id": 427
+ },
+ {
+  "question": "Illustrate the effect of addressing modes on the execution time of a program",
+  "id": 428
+ },
+ {
+  "question": "compare different arithmetic and logic operations used in ALU design",
+  "id": 429
+ },
+ {
+  "question": "Examine the  different types of control logic designs in processors",
+  "id": 430
+ },
+ {
+  "question": "Categorize the computer memory types based on performance and cost",
+  "id": 431
+ },
+ {
+  "question": "Select appropriate interfacing standards for I\/O devices.",
+  "id": 432
+ },
+ {
+  "question": "Design programs using Object Oriented Programming concepts.",
+  "id": 433
+ },
+ {
+  "question": "Apply features such as composition of Objects, Operator overloading, Inheritance, Polymorphism etc.",
+  "id": 434
+ },
+ {
+  "question": "Construct interfaces and packages in the Java programs.",
+  "id": 435
+ },
+ {
+  "question": "Design multi-threading in Java programs.",
+  "id": 436
+ },
+ {
+  "question": "Design Applets using Java programs",
+  "id": 437
+ },
+ {
+  "question": "Construct Java program using Files",
+  "id": 438
+ },
+ {
+  "question": "Classify different insulating materials based on their properties and applications",
+  "id": 440
+ },
+ {
+  "question": "Identify the breakdown behavior of gases, liquids, solids and vaccuum under different operating conditions",
+  "id": 441
+ },
+ {
+  "question": "Analyse the behavior of conducting  and magnetic materials based on the operating temperature",
+  "id": 442
+ },
+ {
+  "question": "Select suitable materials for realization of solar energy conversion systems",
+  "id": 443
+ },
+ {
+  "question": "Choose modern processes and tools for material studies",
+  "id": 444
+ },
+ {
+  "question": "Explain the roles that databases play in organizing  with respect to various types of Storage Organizations  such as Sequential , Hash etc.",
+  "id": 447
+ },
+ {
+  "question": "Explain the role that database play in organizing the Storage and access.",
+  "id": 448
+ },
+ {
+  "question": "Illustrate the basic database structures and access techniques: indexing methods including B+ tree",
+  "id": 449
+ },
+ {
+  "question": "Compare the file organization, query optimization, transaction management and database administration techniques.",
+  "id": 450
+ },
+ {
+  "question": "Demonstrate the basics of Object oriented databases and XML",
+  "id": 451
+ },
+ {
+  "question": "Interpret the basics of advanced topics such as database performance tuning, distributed databases",
+  "id": 452
+ },
+ {
+  "question": "Support non relational database systems and structures and new generation database systems like MongoDB.",
+  "id": 453
+ },
+ {
+  "question": "Develop computational models for analysis of power system in terms of symmetrical components and sequence networks and illustrate per unit system",
+  "id": 454
+ },
+ {
+  "question": "Analyse and estimate fault currents and voltages during  symmetrical and unsymmetrical faults",
+  "id": 455
+ },
+ {
+  "question": "Perform steady state power flow analysis of power system network using Gauss seidel and NR and FD iterative methods",
+  "id": 456
+ },
+ {
+  "question": "Model and analyse LFC, AGC and AVR for single and two area power system",
+  "id": 457
+ },
+ {
+  "question": "Evaluate the cost of generation and corresponding generation allocated to different units ,taking into account different hydro and thermal constraints",
+  "id": 458
+ },
+ {
+  "question": "Analyze Big Data",
+  "id": 459
+ },
+ {
+  "question": "Demonstrate Hadoop  applications for Big Data.",
+  "id": 460
+ },
+ {
+  "question": "Analyse the stability of simple power system using linear analysis methods and equal area methods",
+  "id": 461
+ },
+ {
+  "question": "Examine  Analytic results using  HDFS",
+  "id": 462
+ },
+ {
+  "question": "Apply  the concepts of MapReduce framework",
+  "id": 463
+ },
+ {
+  "question": "Compare Big Data Storage Technologies",
+  "id": 464
+ },
+ {
+  "question": "Select an apropriate  analysis technique for  Data analysis project",
+  "id": 465
+ },
+ {
+  "question": "Summarize the basics of electrical engineering applied to various engineering problems",
+  "id": 466
+ },
+ {
+  "question": "Perform mathematical analysis of electric circuits and their power measurement",
+  "id": 467
+ },
+ {
+  "question": "Illustrate the basics of magnetism and apply them to electric machines",
+  "id": 468
+ },
+ {
+  "question": "Assess the basic structure of machines and power systems",
+  "id": 469
+ },
+ {
+  "question": "Evaluate the basic circuits and machines used in real world",
+  "id": 470
+ },
+ {
+  "question": "Analyze the basic concepts of Machine learning and exploring the input data in detail",
+  "id": 471
+ },
+ {
+  "question": "Identify machine learning problems and apply suitable algorithms.",
+  "id": 472
+ },
+ {
+  "question": "Interpreting how to apply a variety of learning algorithms to data.",
+  "id": 473
+ },
+ {
+  "question": "Examine the strengths and weaknesses of many popular machine learning approaches",
+  "id": 474
+ },
+ {
+  "question": "Inferring the basic theory and models used in machine learning.",
+  "id": 475
+ },
+ {
+  "question": "Summarizing how to perform evaluation of learning algorithms and improve model selection.",
+  "id": 476
+ },
+ {
+  "question": "Design eccentrically loaded and slender columns using SP 16 design charts and different      types of foundations",
+  "id": 477
+ },
+ {
+  "question": "Demonstrate general P&amp;ID symbols and I&amp;C drawings used in Chemical Engineering practice.",
+  "id": 478
+ },
+ {
+  "question": "Design Pressure vessels and jacketed vessels using given process parameters.",
+  "id": 479
+ },
+ {
+  "question": "Design tall columns, supports and non-standard flanges for a vessel with given specifications.",
+  "id": 480
+ },
+ {
+  "question": "Design storage vessels for volatile and non-volatile liquids using given process conditions.",
+  "id": 481
+ },
+ {
+  "question": "Design heat transfer equipment like double pipe heat exchanger, shell and tube heat exchanger and condenser.",
+  "id": 482
+ },
+ {
+  "question": "Construct detailed proportionate drawings of double pipe heat exchanger, shell and tube heat exchanger and condenser.",
+  "id": 483
+ },
+ {
+  "question": "Discuss confidently the fundamental aspects of Chemical Engineering",
+  "id": 484
+ },
+ {
+  "question": "Demonstrate the depth and breadth of their knowledge on subjects studied in the previous semester",
+  "id": 485
+ },
+ {
+  "question": "Evaluate their own theoretical and applied competencies in Chemical Engineering field",
+  "id": 486
+ },
+ {
+  "question": "Identify the need for further enhancing knowledge and lifelong learning",
+  "id": 487
+ },
+ {
+  "question": "Perform confidently during an interview",
+  "id": 488
+ },
+ {
+  "question": "Debate and answer questions of the chosen topic with depth and clarity",
+  "id": 489
+ },
+ {
+  "question": "Develop software programmes for simulating Chemical Engineering problems using  MS Excel\/ MATLAB \/ Aspen Plus",
+  "id": 490
+ },
+ {
+  "question": "Model and simulate typical chemical plants using Aspen Plus",
+  "id": 491
+ },
+ {
+  "question": "Apply numerical methods for solving nonlinear, transcendental and linear algebraic equations to chemical engineering problems using C++ Programming",
+  "id": 492
+ },
+ {
+  "question": "Apply numerical methods for interpolation, numerical differentiation and numerical integration  to solve chemical engineering problems using C++ Programming",
+  "id": 493
+ },
+ {
+  "question": "Analyze the basic concepts of Machine Learning and exploring the input data in detail.",
+  "id": 494
+ },
+ {
+  "question": "Identify machine learning problems and apply suitable algorithms.",
+  "id": 495
+ },
+ {
+  "question": "Interpreting how to apply a variety of learning algorithms to data.",
+  "id": 496
+ },
+ {
+  "question": "Examine the strengths and weekness of many popular machine learning approaches.",
+  "id": 497
+ },
+ {
+  "question": "Inferring the basic theory and models used in machine learning.",
+  "id": 498
+ },
+ {
+  "question": "Summarizing how to perform evaluation of learning algorithms and improve model selection.",
+  "id": 499
+ },
+ {
+  "question": "Identify and explain different circuits and corresponding waveforms in power electronic systems",
+  "id": 500
+ }]

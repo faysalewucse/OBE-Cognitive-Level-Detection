@@ -61,7 +61,7 @@ function App() {
               }
             />
             <Route
-              path="/editQuiz/:joinKey"
+              path="/editQuiz/:id"
               element={
                 <PrivateRoute>
                   <EditQuiz />
