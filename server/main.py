@@ -96,8 +96,6 @@ def generate_text_sequence(seed_text, n_words):
 # Next Word Prediction End
 
 # Default route
-
-
 @app.route('/')
 def home():
     return "Welcome to the Cognitive Level Prediction API!"
