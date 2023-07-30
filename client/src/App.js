@@ -1,22 +1,11 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import PrivateRoute from "./components/PrivateRoute";
-import PublicRoute from "./components/PublicRoute";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes/router";
 import { AuthProvider } from "./contexts/AuthContext";
-import CreateQuiz from "./pages/CreateQuiz";
-import EditQuiz from "./pages/EditQuiz";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import MyPage from "./pages/MyPage";
-import ParticipateQuiz from "./pages/ParticipateQuiz";
-import Result from "./pages/Result";
-import Signup from "./pages/SignUp";
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <AuthProvider>
           <Navbar />
           <Routes>
@@ -86,7 +75,10 @@ function App() {
             />
           </Routes>
         </AuthProvider>
-      </BrowserRouter>
+      </BrowserRouter> */}
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </div>
   );
 }

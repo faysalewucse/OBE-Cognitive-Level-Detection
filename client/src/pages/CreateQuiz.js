@@ -247,18 +247,25 @@ export default function CreateQuiz() {
           text: [{ text: "Note: ", bold: true }, notes || ""],
           style: "note",
         },
-        { text: "Questions:", style: "section", margin: [0, 20, 0, 0] },
-        ...questions?.map((question, index) => ({
-          columns: [
-            { text: `${index + 1}.`, bold: true },
-            { text: question.question, style: "question" },
-            {
-              text: `[C${question.cognitive_level}, Marks ${question.marks}]`,
-              bold: true,
-            },
-          ],
-          margin: [0, 5, 0, 0],
-        })),
+        { text: "Questions:", style: "section", margin: [0, 20, 10, 0] },
+        {
+          layout: {
+            widths: [40, "*", 100],
+          },
+          table: {
+            body: [
+              ...questions?.map((question, index) => [
+                { text: `${index + 1}.`, bold: true },
+                { text: question.question },
+                {
+                  text: `[C${question.cognitive_level}, Marks ${question.marks}]`,
+                  bold: true,
+                },
+              ]),
+            ],
+          },
+          margin: [0, 0, 0, 0],
+        },
       ],
       styles: {
         header: { bold: true, fontSize: 12, marginBottom: 5 },
